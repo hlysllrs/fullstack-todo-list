@@ -1,4 +1,4 @@
-const { model, Schema, default: mongoose } = require('mongoose')
+const { model, Schema } = require('mongoose')
 const { itemSchema } = require('./item')
 
 const lineItemSchema = new Schema({
@@ -31,7 +31,7 @@ orderSchema.virtual('totalQty').get(function () {
 })
 
 orderSchema.virtual('orderId').get(function () {
-  return this._id.slice(-6).toUpperCase()
+  return this.id.slice(-6).toUpperCase()
 })
 
 orderSchema.statics.getCart = function (userId) {

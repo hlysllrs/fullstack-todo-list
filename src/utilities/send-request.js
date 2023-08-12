@@ -7,7 +7,6 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
     options.headers = { 'Content-Type': 'application/json' }
     options.body = JSON.stringify(payload)
   }
-
   const token = getToken()
   if (token) {
     // ensure headers object exists
@@ -16,7 +15,9 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
     // prefacing with 'Bearer' is recommended in the HTTP specification
     options.headers.Authorization = `Bearer ${token}`
   }
+  console.log(token)
   const res = await fetch(url, options)
+  console.log(res)
   // res.ok will be false if the status code set to 4XX in the controller action
   if (res.ok) return res.json()
   throw new Error('Bad Request')

@@ -5,6 +5,7 @@ const path = require('path')
 const logger = require('morgan')
 
 /* ---------- Middleware ---------- */
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use((req, res, next) => {
   res.locals.data = {}
@@ -12,7 +13,6 @@ app.use((req, res, next) => {
 })
 app.use(logger('dev'))
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-app.use(express.static(path.join(__dirname, 'public')))
 // check if token and create req.user
 app.use(require('./config/checkToken'))
 app.use('/api/users', require('./routes/api/users'))
