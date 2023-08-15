@@ -1,7 +1,7 @@
 .NewOrderPage {
   height: 100%;
   display: grid;
-  grid-template-columns: 1.6fr 3.5fr 3fr;
+  grid-template-columns: 1.6fr 3.5fr;
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
@@ -13,4 +13,8 @@
   justify-content: space-between;
   align-items: center;
   margin: 3vmin 2vmin;
+}
+
+.cart {
+  text-align: left;
 }

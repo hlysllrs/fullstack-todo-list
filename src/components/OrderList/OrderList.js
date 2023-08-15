@@ -1,4 +1,3 @@
-import order from '../../../models/order'
 import OrderListItem from '../OrderListItem/OrderListItem'
 import styles from './OrderList.module.scss'
 

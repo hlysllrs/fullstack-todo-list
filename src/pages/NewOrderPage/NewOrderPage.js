@@ -70,7 +70,7 @@ export default function NewOrderPage({ user, setUser }) {
         menuItems={menuItems.filter(item => item.category.name === activeCat)}
         handleAddToOrder={handleAddToOrder}
       />
-      <OrderDetail
+      <OrderDetail className={styles.cart}
         order={cart}
         handleChangeQty={handleChangeQty}
         handleCheckout={handleCheckout}
