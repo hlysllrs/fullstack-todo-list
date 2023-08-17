@@ -12,4 +12,7 @@ router.post('/login', dataController.login, apiController.auth)
 // GET -> /api/users/check-token
 router.get('/check-token', ensureLoggedIn, checkToken)
 
+// PUT -> /api/users/:id
+router.put('/:id', dataController.update, apiController.auth)
+
 module.exports = router

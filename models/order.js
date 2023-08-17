@@ -66,7 +66,7 @@ orderSchema.methods.setItemQty = function (itemId, newQty) {
   const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId))
   if (lineItem && newQty <= 0) {
     // if yes and newQty is 0 or less, remove from cart
-    lineItem.remove()
+    lineItem.deleteOne()
   } else if (lineItem) {
     // if no, update item quantity
     lineItem.qty = newQty

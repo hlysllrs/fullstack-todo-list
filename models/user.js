@@ -3,10 +3,6 @@ const bcrypt = require('bcrypt')
 
 const SALT_ROUNDS = 6
 
-const guestSchema = new Schema({
-  name: String
-})
-
 const userSchema = new Schema({
   name: { type: String, required: true },
   email: {
@@ -38,7 +34,6 @@ userSchema.pre('save', async function (next) {
   return next()
 })
 
-module.exports = {
-  User: model('User', userSchema),
-  Guest: model('Guest', guestSchema)
-} 
+const User = model('User', userSchema)
+
+module.exports = User

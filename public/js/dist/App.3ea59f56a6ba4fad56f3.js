@@ -14,18 +14,27 @@
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Cart_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cart.module.scss */ "./src/components/Cart/Cart.module.scss");
+/* harmony import */ var _OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 
 function Cart(_ref) {
   let {
-    props
+    order,
+    handleChangeQty,
+    handleCheckout
   } = _ref;
   return /*#__PURE__*/React.createElement("div", {
     className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].cartBackground
   }, /*#__PURE__*/React.createElement("div", {
     className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].cartContainer
-  }, /*#__PURE__*/React.createElement("button", null, "x"), /*#__PURE__*/React.createElement("h1", null, "This is the Cart"), /*#__PURE__*/React.createElement("button", null, "checkout")));
+  }, /*#__PURE__*/React.createElement("button", null, "x"), /*#__PURE__*/React.createElement("h1", null, "This is the Cart"), /*#__PURE__*/React.createElement(_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].cart,
+    order: order,
+    handleChangeQty: handleChangeQty,
+    handleCheckout: handleCheckout
+  }), /*#__PURE__*/React.createElement("button", null, "checkout")));
 }
 
 /***/ }),
@@ -452,11 +461,11 @@ function OrderListItem(_ref) {
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
@@ -464,20 +473,20 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     var _this;
     super(...arguments);
     _this = this;
-    this.state = {
+    _defineProperty(this, "state", {
       name: '',
       email: '',
       password: '',
       confirm: '',
       error: ''
-    };
-    this.handleChange = evt => {
+    });
+    _defineProperty(this, "handleChange", evt => {
       this.setState({
         [evt.target.name]: evt.target.value,
         error: ''
       });
-    };
-    this.handleSubmit = /*#__PURE__*/function () {
+    });
+    _defineProperty(this, "handleSubmit", /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(function* (evt) {
         evt.preventDefault();
         try {
@@ -498,7 +507,7 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       return function (_x) {
         return _ref.apply(this, arguments);
       };
-    }();
+    }());
   }
   // we must override the render method
   // the render method is the equivilent to a function-based component (its jon is to return the UI)
@@ -615,13 +624,15 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_1__
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _App_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.module.scss */ "./src/pages/App/App.module.scss");
-/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
 /* harmony import */ var _AuthPage_AuthPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../AuthPage/AuthPage */ "./src/pages/AuthPage/AuthPage.js");
 /* harmony import */ var _NewOrderPage_NewOrderPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../NewOrderPage/NewOrderPage */ "./src/pages/NewOrderPage/NewOrderPage.js");
 /* harmony import */ var _OrderHistoryPage_OrderHistoryPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../OrderHistoryPage/OrderHistoryPage */ "./src/pages/OrderHistoryPage/OrderHistoryPage.js");
 /* harmony import */ var _components_NavBar_NavBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/NavBar/NavBar */ "./src/components/NavBar/NavBar.js");
 /* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../router/routes */ "./src/router/routes.js");
 /* harmony import */ var _components_Cart_Cart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/Cart/Cart */ "./src/components/Cart/Cart.js");
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -636,6 +647,24 @@ function App() {
   const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_8__.getUser)());
   const [showCart, setShowCart] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [showUserPanel, setShowUserPanel] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+
+  // automatically log in as guest user
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (!user) {
+      const guestUserData = {
+        // generate random email address
+        email: Math.round(Math.random() * 100000) + '@guest.com',
+        // assign guest name 
+        name: 'c186ec',
+        // set guest password
+        password: 'guestpass'
+      };
+      // set user to newly created guest user
+      setUser( /*#__PURE__*/_asyncToGenerator(function* () {
+        return yield (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_8__.signUp)(guestUserData);
+      }));
+    }
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: _App_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].App
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_NavBar_NavBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -661,7 +690,7 @@ function App() {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Navigate, {
       to: "/orders/new"
     })
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Cart_Cart__WEBPACK_IMPORTED_MODULE_7__["default"], null));
+  })))));
 }
 
 /***/ }),
@@ -716,11 +745,15 @@ function AuthPage(_ref) {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* unused harmony export default */
+/* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
+/* harmony import */ var _components_SignUpForm_SignUpForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SignUpForm/SignUpForm */ "./src/components/SignUpForm/SignUpForm.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function Home(props) {
+
+
+function Checkout(props) {
   return /*#__PURE__*/React.createElement("div", {
     className: "Checkout"
-  }, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h1", null, "This is the ", " Checkout page")));
+  }, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h1", null, "This is the ", " Checkout page"), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_0__["default"], null), /*#__PURE__*/React.createElement(_components_SignUpForm_SignUpForm__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 }
 
 /***/ }),
@@ -762,7 +795,7 @@ function Home(props) {
 /* harmony import */ var _components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Logo/Logo */ "./src/components/Logo/Logo.js");
 /* harmony import */ var _components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/MenuList/MenuList */ "./src/components/MenuList/MenuList.js");
 /* harmony import */ var _components_CategoryList_CategoryList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/CategoryList/CategoryList */ "./src/components/CategoryList/CategoryList.js");
-/* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
+/* harmony import */ var _components_Cart_Cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Cart/Cart */ "./src/components/Cart/Cart.js");
 /* harmony import */ var _components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -867,7 +900,7 @@ function NewOrderPage(_ref) {
   })), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     menuItems: menuItems.filter(item => item.category.name === activeCat),
     handleAddToOrder: handleAddToOrder
-  }), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), /*#__PURE__*/React.createElement(_components_Cart_Cart__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].cart,
     order: cart,
     handleChangeQty: handleChangeQty,
@@ -1159,7 +1192,6 @@ function _sendRequest() {
         options.headers.Authorization = "Bearer ".concat(token);
       }
       const res = yield fetch(url, options);
-      console.log(res);
       // res.ok will be false if the status code set to 4XX in the controller action
       if (res.ok) return res.json();
       throw new Error('Bad Request');
@@ -1180,6 +1212,7 @@ function _sendRequest() {
 /* harmony export */   login: () => (/* binding */ login),
 /* harmony export */   signUp: () => (/* binding */ signUp)
 /* harmony export */ });
+/* unused harmony export updateUser */
 /* harmony import */ var _send_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./send-request */ "./src/utilities/send-request.js");
 
 const BASE_URL = '/api/users';
@@ -1188,6 +1221,11 @@ function signUp(userData) {
 }
 function login(credentials) {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/login"), 'POST', credentials);
+}
+
+// 🟥 UPDATE USER FUNCTION
+function updateUser(updatedData, userId) {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/").concat(userId), 'PUT', updatedData);
 }
 
 /***/ }),
@@ -1205,6 +1243,7 @@ function login(credentials) {
 /* harmony export */   login: () => (/* binding */ login),
 /* harmony export */   signUp: () => (/* binding */ signUp)
 /* harmony export */ });
+/* unused harmony export updateUser */
 /* harmony import */ var _users_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-api */ "./src/utilities/users-api.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1255,6 +1294,15 @@ function getUser() {
 }
 function logOut() {
   localStorage.removeItem('token');
+}
+
+// 🟥 CREATE UPDATE USER SERVICE
+function updateUser() {
+  const token = getToken();
+  // 
+
+  // save new token with updated user informaton to local storage
+  localStorage.setItem('token', token);
 }
 
 /***/ }),
@@ -1569,7 +1617,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.QpVD3qAS0nYBtoQqAYoe {
   height: 2rem;
   align-items: center;
   font-size: 1.5rem;
-  color: orangered;
+  color: green;
 }
 .QpVD3qAS0nYBtoQqAYoe a {
   color: orangered;
@@ -1578,7 +1626,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.QpVD3qAS0nYBtoQqAYoe {
 .QpVD3qAS0nYBtoQqAYoe a:link, .QpVD3qAS0nYBtoQqAYoe a:visited {
   color: orangered;
   text-decoration: none;
-}`, "",{"version":3,"sources":["webpack://./src/components/NavBar/NavBar.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,6BAAA;EACA,WAAA;EACA,yBAAA;EACA,YAAA;EACA,mBAAA;EACA,iBAAA;EACA,gBAAA;AACF;AAAE;EACE,gBAAA;EACA,qBAAA;AAEJ;AADI;EACE,gBAAA;EACA,qBAAA;AAGN","sourcesContent":[".NavBar {\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n  background-color: #f0f0f0;\n  height: 2rem;\n  align-items: center;\n  font-size: 1.5rem;\n  color: orangered;\n  a {\n    color: orangered;\n    text-decoration: none;\n    &:link, &:visited {\n      color: orangered;\n      text-decoration: none;\n    }\n  }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/NavBar/NavBar.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,6BAAA;EACA,WAAA;EACA,yBAAA;EACA,YAAA;EACA,mBAAA;EACA,iBAAA;EACA,YAAA;AACF;AAAE;EACE,gBAAA;EACA,qBAAA;AAEJ;AADI;EACE,gBAAA;EACA,qBAAA;AAGN","sourcesContent":[".NavBar {\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n  background-color: #f0f0f0;\n  height: 2rem;\n  align-items: center;\n  font-size: 1.5rem;\n  color: green;\n  a {\n    color: orangered;\n    text-decoration: none;\n    &:link, &:visited {\n      color: orangered;\n      text-decoration: none;\n    }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"NavBar": `QpVD3qAS0nYBtoQqAYoe`

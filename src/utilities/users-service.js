@@ -39,3 +39,12 @@ export function getUser() {
 export function logOut() {
   localStorage.removeItem('token');
 }
+
+// 🟥 CREATE UPDATE USER SERVICE
+export function updateUser() {
+  const token = getToken()
+  // 
+
+  // save new token with updated user informaton to local storage
+  localStorage.setItem('token', token)
+}

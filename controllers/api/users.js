@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { User } = require('../../models/user')
+const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const SECRET = process.env.SECRET
@@ -13,7 +13,6 @@ const dataController = {
   async create(req, res, next) {
     try {
       const user = await User.create(req.body)
-      console.log(req.body)
       // token will be a string
       const token = createJWT(user)
       // send back the token as a string which we need to account for in the client
@@ -22,7 +21,7 @@ const dataController = {
       next()
     } catch (e) {
       console.log('You got a database problem')
-      res.status(400).json(e)
+      res.status(400).json({ message: e.message })
     }
   },
   async login(req, res, next) {
@@ -37,8 +36,24 @@ const dataController = {
     } catch {
       res.status(400).json('Bad Credentials')
     }
+  },
+  async update(req, res, next) {
+    try {
+      const user = await User.findOne({ _id: req.user._id })
+      const updates = Object.keys(req.body)
+      updates.forEach(update => user[update] = req.body[update])
+      await user.save()
+      // send back the token as a string which we need to account for in the client
+      res.locals.data.user = user
+      // create a new token containing the updated user data
+      res.locals.data.token = createJWT(user)
+      next()
+    } catch (e) {
+      res.status(400).json({ message: e.message })
+    }
   }
 }
+
 
 const apiController = {
   auth(req, res) {

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../components/Logo/Logo'
 import MenuList from '../../components/MenuList/MenuList'
 import CategoryList from '../../components/CategoryList/CategoryList'
-import OrderDetail from '../../components/OrderDetail/OrderDetail'
+import Cart from '../../components/Cart/Cart'
 import UserLogOut from '../../components/UserLogOut/UserLogOut'
 
 export default function NewOrderPage({ user, setUser }) {
@@ -70,11 +70,11 @@ export default function NewOrderPage({ user, setUser }) {
         menuItems={menuItems.filter(item => item.category.name === activeCat)}
         handleAddToOrder={handleAddToOrder}
       />
-      <OrderDetail className={styles.cart}
+      <Cart className={styles.cart}
         order={cart}
         handleChangeQty={handleChangeQty}
-        handleCheckout={handleCheckout}
-      />
+        handleCheckout={handleCheckout} />
+
     </main>
   )
 }

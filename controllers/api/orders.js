@@ -1,5 +1,4 @@
 const Order = require('../../models/order')
-const { Guest } = require('../../models/user')
 
 module.exports = {
   cart,
@@ -12,14 +11,8 @@ module.exports = {
 // cart is the unpaid order for a user
 async function cart(req, res) {
   try {
-    if (req.user) {
-      const cart = await Order.getCart(req.user._id)
-      res.status(200).json(cart)
-    } else {
-      const guest = new Guest({ name: 'Guest' })
-      const cart = await Order.getCart(guest._id)
-      res.status(200).json({ cart, guest })
-    }
+    const cart = await Order.getCart(req.user._id)
+    res.status(200).json(cart)
   } catch (e) {
     res.status(400).json({ msg: e.message })
   }
