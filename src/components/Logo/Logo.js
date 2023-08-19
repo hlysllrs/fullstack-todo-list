@@ -3,8 +3,7 @@ import styles from './Logo.module.scss'
 export default function Logo() {
   return (
     <div className={styles.Logo}>
-      <div>SEI</div>
-      <div>CAFE</div>
+      <img src='../../img/lounger-logo.svg' alt='Lounger Logo' />
     </div>
   )
 }

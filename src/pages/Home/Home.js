@@ -1,8 +1,12 @@
+import styles from './Home.module.scss'
+import MenuList from '../../components/MenuList/MenuList'
+
 export default function Home(props) {
   return (
-    <div className="HomePage">
+    <div className="Home">
       <center>
-        <h1>This is the {/* {props.page} */} Home page</h1>
+        <img src="../../img/cover-image.jpeg" alt="Cover Image" className={styles.cover} />
+        <h1>Home</h1>
 
       </center>
     </div>

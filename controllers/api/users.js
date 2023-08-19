@@ -73,6 +73,6 @@ function createJWT(user) {
   return jwt.sign(
     { user },
     SECRET,
-    { expiresIn: '24h' }
+    { expiresIn: '7d' }
   )
 }

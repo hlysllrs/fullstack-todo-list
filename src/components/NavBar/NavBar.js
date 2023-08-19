@@ -1,28 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from './NavBar.module.scss'
 
-export default function NavBar({ routes, showCart, setShowCart, showUserPanel, setShowUserPanel }) {
-  function handleCartClick() {
-    setShowCart(!showCart)
-  }
-
-  function handleUserClick() {
-    setShowUserPanel(!showUserPanel)
-  }
+export default function NavBar({ props }) {
 
   return (
-    <nav className={styles.NavBar}>
-      {routes.map(({ key, path }) => (
-        <Link key={key} to={path}>
-          {key}
-        </Link>
-      ))}
-      <div onClick={handleCartClick}>
-        Cart
-      </div>
-      <div onClick={handleUserClick}>
-        User
-      </div>
-    </nav>
+    <div className={styles.NavBar}>
+      <Link to="/shop">Shop</Link>
+      <div>Cart</div>
+      <div>User</div>
+    </div>
   )
 }

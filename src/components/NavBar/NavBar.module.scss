@@ -1,18 +1,17 @@
 .NavBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  background-color: #f0f0f0;
-  height: 2rem;
-  align-items: center;
-  font-size: 1.5rem;
-  color: green;
+  flex-direction: row;
+  justify-content: space-between;
   a {
-    color: orangered;
     text-decoration: none;
-    &:link, &:visited {
-      color: orangered;
-      text-decoration: none;
-    }
-  }
+    color: var(--black);
+    margin: 0 0.5rem;
+  };
+  div {
+    margin: 0 0.5rem
+  };
 }

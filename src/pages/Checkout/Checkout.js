@@ -5,7 +5,7 @@ export default function Checkout(props) {
   return (
     <div className="Checkout">
       <center>
-        <h1>This is the {/* {props.page} */} Checkout page</h1>
+        <h1>Checkout</h1>
         <OrderDetail />
 
         {/* INSERT TOGGLE FORM ABOVE CHECKOUT BUTTON TO CREATE A USER */}

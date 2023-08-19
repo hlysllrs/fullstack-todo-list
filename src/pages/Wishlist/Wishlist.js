@@ -1,8 +1,8 @@
-export default function Home(props) {
+export default function Wishlist(props) {
   return (
-    <div className="HomePage">
+    <div className="Wishlist">
       <center>
-        <h1>This is the {/* {props.page} */} Wishlist page</h1>
+        <h1>Wishlist</h1>
 
       </center>
     </div>
