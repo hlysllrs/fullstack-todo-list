@@ -10,7 +10,6 @@ export function login(credentials) {
   return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
 }
 
-// 🟥 UPDATE USER FUNCTION
-export function updateUser(updatedData, userId) {
-  return sendRequest(`${BASE_URL}/${userId}`, 'PUT', updatedData)
+export function updateUser(updatedUserData, userId) {
+  return sendRequest(`${BASE_URL}/${userId}`, 'PUT', updatedUserData)
 }

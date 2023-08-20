@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from './NavBar.module.scss'
 
-export default function NavBar({ toggleShowCart, toggleShowUserPanel, cart }) {
-
-  // const cartQty = cart.totalQty
+export default function NavBar({ user, toggleShowCart, toggleShowUserPanel, cart }) {
 
   return (
     <div className={styles.NavBar}>
-      <Link to="/shop">Shop</Link>
-      <div onClick={toggleShowCart}>{cart ? `Cart(${cart.totalQty})` : 'Cart(0)'}</div>
-      <div onClick={toggleShowUserPanel}>User</div>
+      <Link to="/shop">shop</Link>
+      <div onClick={toggleShowCart}>{cart ? `cart(${cart.totalQty})` : 'cart(0)'}</div>
+      <div onClick={toggleShowUserPanel}>{user.name !== 'c186ec' ? user.name.toLowerCase() : 'log in'}</div>
     </div>
   )
 }

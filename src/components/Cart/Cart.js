@@ -1,8 +1,11 @@
 import styles from './Cart.module.scss'
 import LineItem from '../LineItem/LineItem'
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShowCart }) {
   if (!cart) return null
+
+  const navigate = useNavigate()
 
   const lineItems = cart.lineItems.map(item =>
     <LineItem
@@ -13,10 +16,14 @@ export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShow
     />
   )
 
+  function handleCheckoutClick() {
+    toggleShowCart()
+    navigate('/checkout')
+  }
+
   return (
     <div className={styles.CartBackground}>
       <div className={styles.CartPanel}>
-        <button className="btn-sm" onClick={toggleShowCart}>x</button>
         <div className={styles.sectionHeading}>
           {cart.isPaid ?
             <span>ORDER<span className="smaller">{cart.orderId}</span></span>
@@ -35,9 +42,9 @@ export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShow
                   :
                   <button
                     className="btn-sm"
-                    onClick={handleCheckout}
+                    onClick={handleCheckoutClick}
                     disabled={!lineItems.length}
-                  >CHECKOUT
+                  >checkout
                   </button>
                 }
                 <span>{cart.totalQty}</span>
@@ -45,9 +52,10 @@ export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShow
               </section>
             </>
             :
-            <div className={styles.hungry}>Your cart is empty.</div>
+            <div className={styles.empty}>your cart is empty.</div>
           }
         </div>
+        <button className="btn-sm" onClick={toggleShowCart}>close</button>
       </div>
     </div >
   )

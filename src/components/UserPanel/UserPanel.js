@@ -5,13 +5,13 @@ import LoginForm from '../LoginForm/LoginForm'
 import SignUpForm from '../SignUpForm/SignUpForm'
 import UserLogOut from '../UserLogOut/UserLogOut'
 
-export default function UserPanel({ user, setUser, toggleShowUserPanel }) {
+export default function UserPanel({ user, setUser, toggleShowUserPanel, createGuestUser }) {
   const [showLogin, setShowLogin] = useState(true)
 
 
   return (
     <div className={styles.UserPanel}>
-      <button className="btn-sm" onClick={toggleShowUserPanel}>x</button>
+
       <h1>log in</h1>
       {user.name === 'c186ec' ? showLogin === true ?
         <>
@@ -34,9 +34,10 @@ export default function UserPanel({ user, setUser, toggleShowUserPanel }) {
           <h2>welcome back</h2>
           <Link to='/orders'>order history</Link>
           <Link to='/wishlist'>wishlist</Link>
-          <UserLogOut user={user} setUser={setUser} toggleShowUserPanel={toggleShowUserPanel} />
+          <UserLogOut user={user} setUser={setUser} toggleShowUserPanel={toggleShowUserPanel} createGuestUser={createGuestUser} />
         </>
       }
+      <button className="btn-sm" onClick={toggleShowUserPanel}>close</button>
     </div>
   )
 }

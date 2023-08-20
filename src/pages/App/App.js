@@ -14,6 +14,7 @@ import UserPanel from '../../components/UserPanel/UserPanel'
 import Cart from '../../components/Cart/Cart'
 import { getToken, getUser, signUp } from '../../utilities/users-service'
 import * as ordersAPI from '../../utilities/orders-api'
+import { createPortal } from 'react-dom'
 
 // const reducer = (state, action) => {
 //   switch (action.type) {
@@ -44,21 +45,12 @@ export default function App() {
   const [showCart, setShowCart] = useState(false)
   const [showUserPanel, setShowUserPanel] = useState(false)
   const [cart, setCart] = useState(null)
+  const navigate = useNavigate()
 
   // automatically log in as guest user
   useEffect(() => {
     if (!user) {
-      const guestUserData = {
-        // generate random email address
-        email: Math.round(Math.random() * 100000000) + '@guest.com',
-        // assign guest name 
-        name: 'c186ec',
-        // set guest password
-        password: 'guestpass'
-      }
-      localStorage.setItem('guest', guestUserData.email)
-      // set user to newly created guest user
-      setUser(async () => await signUp(guestUserData))
+      createGuestUser()
     }
   }, [])
 
@@ -71,7 +63,21 @@ export default function App() {
     getCartItems()
   }, [])
 
-  const navigate = useNavigate()
+  async function createGuestUser() {
+    const guestUserData = {
+      // generate random email address
+      email: Math.round(Math.random() * 100000000) + '@guest.com',
+      // assign guest name 
+      name: 'c186ec',
+      // set guest password
+      password: 'guestpass'
+    }
+    localStorage.setItem('guest', guestUserData.email)
+    const guestUser = await signUp(guestUserData)
+    // set user to newly created guest user
+    setUser(guestUser)
+  }
+
 
   function handleLogoClick() {
     if (showCart) toggleShowCart()
@@ -96,26 +102,32 @@ export default function App() {
       <Logo className={styles.Logo} handleLogoClick={handleLogoClick} />
       <NavBar
         className={styles.NavBar}
+        user={user}
         cart={cart}
         showCart={showCart}
         toggleShowCart={toggleShowCart}
         toggleShowUserPanel={toggleShowUserPanel} />
-      {showCart && <Cart
-        className={styles.Cart}
-        cart={cart}
-        toggleShowCart={toggleShowCart}
-        handleChangeQty={handleChangeQty} />}
-      {showUserPanel && <UserPanel
-        className={styles.UserPanel}
-        user={user}
-        setUser={setUser}
-        toggleShowUserPanel={toggleShowUserPanel} />}
+      <div>
+        {showCart && createPortal(<Cart
+          className={styles.Cart + ' cart'}
+          cart={cart}
+          toggleShowCart={toggleShowCart}
+          handleChangeQty={handleChangeQty} />, document.body)}
+      </div>
+      <div>
+        {showUserPanel && createPortal(<UserPanel
+          className={styles.UserPanel + ' user-panel'}
+          user={user}
+          setUser={setUser}
+          toggleShowUserPanel={toggleShowUserPanel}
+          createGuestUser={createGuestUser} />, document.body)}
+      </div>
       <Routes>
         {/* client-side route that renders the component instance if the path matches the url in the address bar */}
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop cart={cart} setCart={setCart} />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/orders" element={<OrderHistory />} />
+        <Route path="/checkout" element={<Checkout user={user} setUser={setUser} handleChangeQty={handleChangeQty} cart={cart} setCart={setCart} />} />
+        <Route path="/orders" element={<OrderHistory user={user} setUser={setUser} />} />
         <Route path="/wishlist" element={<Wishlist />} />
         {/* <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
         <Route path="/orders" element={<OrderHistoryPage user={user} setUser={setUser} />} /> */}

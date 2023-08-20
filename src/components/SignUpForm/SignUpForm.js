@@ -1,59 +1,53 @@
-import { Component } from 'react'
-import { signUp } from '../../utilities/users-service'
+import { useState } from 'react'
+import { updateUser } from '../../utilities/users-service'
 
-export default class SignUpForm extends Component {
-  state = {
+export default function SignUpForm({ setUser }) {
+  const [signUpData, setSignUpData] = useState({
     name: '',
     email: '',
     password: '',
-    confirm: '',
-    error: ''
+    confirm: ''
+  })
+  const [error, setError] = useState('')
+
+  function handleChange(e) {
+    setSignUpData({ ...signUpData, [e.target.name]: e.target.value })
+    setError('')
   }
 
-  handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-      error: ''
-    })
-  }
-
-  handleSubmit = async (evt) => {
-    evt.preventDefault()
+  async function handleSubmit(e) {
+    e.preventDefault()
     try {
-      const formData = { ...this.state }
+      const formData = { ...signUpData }
       delete formData.confirm
-      delete formData.error
       // the promise returned by the signUp service method will resolve to the user object included in the payload of the JWT
-      const user = await signUp(formData)
-      // baby step
-      this.props.setUser(user)
+      const updatedUser = await updateUser(formData)
+      // set user state to the updated user
+      setUser(updatedUser)
     } catch {
       // an error happened on the server
-      this.setState({ error: 'Sugn Up Failed - Try Again' })
+      setError('sign up failed - try again')
     }
   }
 
-  // we must override the render method
-  // the render method is the equivilent to a function-based component (its jon is to return the UI)
-  render() {
-    const disable = this.state.password !== this.state.confirm
-    return (
-      <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
-            <label>Email</label>
-            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} required />
-            <label>Password</label>
-            <input type="text" name="password" value={this.state.password} onChange={this.handleChange} required />
-            <label>Confirm</label>
-            <input type="text" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-            <button type="submit" disabled={disable}>SIGN UP</button>
-          </form>
-        </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
+  const disable = signUpData.password !== signUpData.confirm
+
+  return (
+    <div>
+      <div className="form-container">
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <label>name</label>
+          <input type="text" name="name" value={signUpData.name} onChange={handleChange} required />
+          <label>email</label>
+          <input type="text" name="email" value={signUpData.email} onChange={handleChange} required />
+          <label>password</label>
+          <input type="password" name="password" value={signUpData.password} onChange={handleChange} required />
+          <label>confirm password</label>
+          <input type="password" name="confirm" value={signUpData.confirm} onChange={handleChange} required />
+          <button type="submit" disabled={disable}>sign up</button>
+        </form>
       </div>
-    )
-  }
+      <p className="error-message">&nbsp;{error}</p>
+    </div>
+  )
 }
