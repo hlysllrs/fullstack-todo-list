@@ -7,9 +7,7 @@ const itemSchema = new Schema({
   imageURL: String,
   category: { type: Schema.Types.ObjectId, ref: 'Category' },
   price: { type: Number, required: true, default: 0 },
-  productFeatures: String,
-  dimensions: String,
-  designer: String
+  featured: Boolean,
 }, {
   timestamps: true
 })
