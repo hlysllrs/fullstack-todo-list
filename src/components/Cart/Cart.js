@@ -1,51 +1,53 @@
 import styles from './Cart.module.scss'
 import LineItem from '../LineItem/LineItem'
 
-export default function Cart({ order, handleChangeQty, handleCheckout }) {
-  if (!order) return null
+export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShowCart }) {
+  if (!cart) return null
 
-  const lineItems = order.lineItems.map(item =>
+  const lineItems = cart.lineItems.map(item =>
     <LineItem
       lineItem={item}
-      isPaid={order.isPaid}
+      isPaid={cart.isPaid}
       handleChangeQty={handleChangeQty}
       key={item._id}
     />
   )
 
   return (
-    <div className={`${styles.Cart} cart`}>
-
-      <div className={styles.sectionHeading}>
-        {order.isPaid ?
-          <span>ORDER<span className="smaller">{order.orderId}</span></span>
-          :
-          <span>NEW ORDER </span>
-        }
-        <span>{new Date(order.updatedAt).toLocaleDateString()}</span>
-      </div>
-      <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
-        {lineItems.length ?
-          <>
-            {lineItems}
-            <section className={styles.total}>
-              {order.isPaid ?
-                <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>
-                :
-                <button
-                  className="btn-sm"
-                  onClick={handleCheckout}
-                  disabled={!lineItems.length}
-                >CHECKOUT
-                </button>
-              }
-              <span>{order.totalQty}</span>
-              <span className={styles.right}>${order.orderTotal.toFixed(2)}</span>
-            </section>
-          </>
-          :
-          <div className={styles.hungry}>Hungry?</div>
-        }
+    <div className={styles.CartBackground}>
+      <div className={styles.CartPanel}>
+        <button className="btn-sm" onClick={toggleShowCart}>x</button>
+        <div className={styles.sectionHeading}>
+          {cart.isPaid ?
+            <span>ORDER<span className="smaller">{cart.orderId}</span></span>
+            :
+            <span>NEW ORDER </span>
+          }
+          <span>{new Date(cart.updatedAt).toLocaleDateString()}</span>
+        </div>
+        <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
+          {lineItems.length ?
+            <>
+              {lineItems}
+              <section className={styles.total}>
+                {cart.isPaid ?
+                  <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>
+                  :
+                  <button
+                    className="btn-sm"
+                    onClick={handleCheckout}
+                    disabled={!lineItems.length}
+                  >CHECKOUT
+                  </button>
+                }
+                <span>{cart.totalQty}</span>
+                <span className={styles.right}>${cart.orderTotal.toFixed(2)}</span>
+              </section>
+            </>
+            :
+            <div className={styles.hungry}>Your cart is empty.</div>
+          }
+        </div>
       </div>
     </div >
   )

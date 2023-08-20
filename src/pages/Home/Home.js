@@ -3,10 +3,9 @@ import MenuList from '../../components/MenuList/MenuList'
 
 export default function Home(props) {
   return (
-    <div className="Home">
+    <div className={styles.Home}>
       <center>
-        <img src="../../img/cover-image.jpeg" alt="Cover Image" className={styles.cover} />
-        <h1>Home</h1>
+        <img src="/img/cover-image.jpeg" alt="Cover Image" className={styles.cover} />
 
       </center>
     </div>

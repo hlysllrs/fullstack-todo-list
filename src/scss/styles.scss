@@ -1,11 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
+@font-face {
+  font-family: 'Monument Grotesk';
+  src: url('../fonts/MonumentGroteskTrial-Regular.woff') format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Monument Grotesk';
+  src: url('../fonts/MonumentGroteskTrial-Medium.woff') format('woff');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Monument Grotesk';
+  src: url('../fonts/MonumentGroteskTrial-Bold.woff') format('woff');
+  font-weight: 700;
+}
+
 :root {
   --white: #ffffff;
   --black: #000000;
   --bg: #e9e8e5;
   --accent: #ff4e00;
   --image-bg: #fafafa;
+  --sidebar-bg: 233, 232, 229;
 }
 
 *, *:before, *:after {
@@ -14,16 +31,17 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Monument Grotesk', 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--white);
   padding: 0;
   height: 100vh;
+  font-weight: 700;
 }
 
 code {
-  font-family:  'Inter' source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
 
@@ -72,6 +90,7 @@ code {
   padding: .6vmin;
   text-align: center;
   font-size: 2vmin;
+  font-weight: 400;
 }
 
 .form-container {

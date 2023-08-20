@@ -1,0 +1,67 @@
+.CartBackground  {
+  width: 100vw;
+  background-color: rgba(233,232,229,0.85);
+}
+
+
+.CartPanel{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100vh;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.OrderDetail {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 3vmin;
+  font-size: 2vmin;
+  color: var(--black);
+}
+
+.Cart .sectionHeading {
+  width: 100%
+}
+
+.Cart .lineItemContainer {
+  margin-top: 3vmin;
+  justify-content: center;
+  height: calc(100vh - 18vmin);
+  width: 100%;
+}
+
+.Cart .total {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 18.35vw 5.75vw 5.25vw;
+  padding: 1vmin 0;
+  color: var(--black);
+  border-top: .1vmin solid var(--black);
+}
+
+.OrderDetail .total span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5vw;
+  color: var(--black);
+}
+
+.OrderDetail .total span.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.OrderDetail .hungry {
+  position: absolute;
+  top: 50vh;
+  font-size: 2vmin;
+}

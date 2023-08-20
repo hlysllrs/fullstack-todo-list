@@ -4,9 +4,7 @@ const BASE_URL = '/api/orders'
 
 // retreive an unpaid order for the logged in user
 export async function getCart() {
-  const response = await sendRequest(`${BASE_URL}/cart`)
-  localStorage.setItem('guest', JSON.stringify(response.guest))
-  return response.cart
+  return await sendRequest(`${BASE_URL}/cart`)
 }
 
 // add an item to the cart

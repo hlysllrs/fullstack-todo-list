@@ -10,8 +10,14 @@
     text-decoration: none;
     color: var(--black);
     margin: 0 0.5rem;
+    font-weight: 500;
   };
   div {
-    margin: 0 0.5rem
+    color: var(--black);
+    margin: 0 0.5rem;
+    font-weight: 500;
   };
+  div:hover {
+    cursor: pointer;
+  }
 }

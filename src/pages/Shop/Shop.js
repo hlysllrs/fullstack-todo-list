@@ -60,8 +60,8 @@ export default function Shop({ user, setUser, cart, setCart }) {
           cart={setCart}
           setActiveCat={setActiveCat}
         />
-        <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>
-        <UserLogOut user={user} setUser={setUser} />
+        {/* <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link> */}
+        {/* <UserLogOut user={user} setUser={setUser} /> */}
       </div>
       <MenuList
         menuItems={menuItems.filter(item => item.category.name === activeCat)}

@@ -36,8 +36,19 @@ export function getUser() {
   return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
 
-export function logOut() {
+export async function logOut() {
   localStorage.removeItem('token');
+  // after removing the token of the logged in user, retreive the guest user email saved in local storage
+  const guestEmail = localStorage.getItem('guest')
+  console.log(guestEmail)
+  await login({
+    // previously created guest email retreived from localStorage (created on first visit)
+    email: guestEmail,
+    // standard guest name 
+    name: 'c186ec',
+    // standard guest password
+    password: 'guestpass'
+  })
 }
 
 // 🟥 CREATE UPDATE USER SERVICE
