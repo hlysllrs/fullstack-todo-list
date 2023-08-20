@@ -361,7 +361,7 @@ function MenuListItem(_ref) {
   }, /*#__PURE__*/React.createElement("span", null, "$", menuItem.price.toFixed(2)), /*#__PURE__*/React.createElement("button", {
     className: "btn-sm",
     onClick: () => handleAddToOrder(menuItem._id)
-  }, "ADD"))));
+  }, "add to cart"))));
 }
 
 /***/ }),
@@ -1660,12 +1660,12 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
   width: 20vw;
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.5rem;
   position: relative;
 }
 .EDeinQzfS2N2rVW_Z1GP .yKZwcRZ95X45OhZYOwuY {
   filter: invert(100%);
-}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,+BAAA;EACA,kBAAA;AACF;AAAE;EACE,oBAAA;AAEJ","sourcesContent":[".Logo {\n  width: 20vw;\n  padding: 0.5rem 0.5rem 0 0.5rem;\n  position: relative;\n  .whiteLogo {\n    filter: invert(100%);\n  }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,eAAA;EACA,kBAAA;AACF;AAAE;EACE,oBAAA;AAEJ","sourcesContent":[".Logo {\n  width: 20vw;\n  padding: 0.5rem;\n  position: relative;\n  .whiteLogo {\n    filter: invert(100%);\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"Logo": `EDeinQzfS2N2rVW_Z1GP`,
@@ -1695,10 +1695,13 @@ ___CSS_LOADER_EXPORT___.locals = {
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
+  width: 100%;
+  padding: 0 0.5rem 0.5rem 0.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(40vh, 1fr);
   gap: 1rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,2DAAA;EACA,SAAA;AACF","sourcesContent":[".MenuList {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: 1rem;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,+BAAA;EACA,aAAA;EACA,4DAAA;EACA,iCAAA;EACA,SAAA;AACF","sourcesContent":[".MenuList {\n  width: 100%;\n  padding: 0 0.5rem 0.5rem 0.5rem;\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  grid-auto-rows: minmax(40vh, 1fr);\n  gap: 1rem;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuList": `eBz5FvD9TgyIgfFi1MdG`
@@ -1727,24 +1730,61 @@ ___CSS_LOADER_EXPORT___.locals = {
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.X4tFBfG4MKknHvd01CKE {
-  margin: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-grow: 1;
 }
 .X4tFBfG4MKknHvd01CKE .Y0DNwR4UlO7wXcfR8phx {
-  max-height: 30vh;
-  max-width: 25vw;
   background-color: var(--image-bg);
   padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 .X4tFBfG4MKknHvd01CKE .Y0DNwR4UlO7wXcfR8phx img {
   width: 100%;
-  height: 100%;
+  max-height: 100%;
   -o-object-fit: scale-down;
   object-fit: scale-down;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA;EACE,eAAA;AACF;AAAE;EACE,gBAAA;EACA,eAAA;EACA,iCAAA;EACA,eAAA;AAEJ;AADI;EACE,WAAA;EACA,YAAA;EACA,yBAAA;EACG,sBAAA;AAGT","sourcesContent":[".MenuListItem {\n  margin: .75rem;\n  .imageContainer {\n    max-height: 30vh;\n    max-width: 25vw;\n    background-color: var(--image-bg);\n    padding: 1.5rem;\n    img {\n      width: 100%;\n      height: 100%;\n      -o-object-fit: scale-down;\n         object-fit: scale-down;\n    }\n  }\n}"],"sourceRoot":""}]);
+}
+.X4tFBfG4MKknHvd01CKE .Lfq0mNng0qDFdHxCkXsN {
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.X4tFBfG4MKknHvd01CKE .Lfq0mNng0qDFdHxCkXsN .VR1OCl60qOXrRx1IzVEa {
+  font-weight: 500;
+  font-size: minmax(2vmin, 2.2rem);
+  padding-top: 0.3rem;
+}
+.X4tFBfG4MKknHvd01CKE .Lfq0mNng0qDFdHxCkXsN .fO9kiPygtr0vmzsXoUxA {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.X4tFBfG4MKknHvd01CKE .Lfq0mNng0qDFdHxCkXsN .fO9kiPygtr0vmzsXoUxA span {
+  font-size: minmax(1.5vmin, 1.8rem);
+  font-weight: 400;
+}
+.X4tFBfG4MKknHvd01CKE .Lfq0mNng0qDFdHxCkXsN .fO9kiPygtr0vmzsXoUxA button {
+  font-size: minmax(1vmin, 1.6rem);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,qBAAA;EACA,YAAA;AACF;AAAE;EACE,iCAAA;EACA,eAAA;EACA,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;AAEJ;AADI;EACE,WAAA;EACA,gBAAA;EACA,yBAAA;EACG,sBAAA;AAGT;AAAE;EACE,WAAA;EACA,WAAA;EACA,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,uBAAA;AAEJ;AADI;EACE,gBAAA;EACA,gCAAA;EACA,mBAAA;AAGN;AADI;EACE,WAAA;EACA,aAAA;EACA,mBAAA;EACA,8BAAA;EACA,mBAAA;AAGN;AAFM;EACE,kCAAA;EACA,gBAAA;AAIR;AAFM;EACE,gCAAA;AAIR","sourcesContent":[".MenuListItem {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: flex-end;\n  flex-grow: 1;\n  .imageContainer {\n    background-color: var(--image-bg);\n    padding: 1.5rem;\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-grow: 1;\n    img {\n      width: 100%;\n      max-height: 100%;\n      -o-object-fit: scale-down;\n         object-fit: scale-down;\n    }\n  }\n  .itemInfo {\n    width: 100%;\n    height: 8vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: flex-start;\n    .name {\n      font-weight: 500;\n      font-size: minmax(2vmin, 2.2rem) ;\n      padding-top: 0.3rem;\n    }\n    .buy {\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      align-items: center;\n      span {\n        font-size: minmax(1.5vmin, 1.8rem);\n        font-weight: 400;\n      }\n      button {\n        font-size: minmax(1vmin, 1.6rem);\n      }\n    }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuListItem": `X4tFBfG4MKknHvd01CKE`,
-	"imageContainer": `Y0DNwR4UlO7wXcfR8phx`
+	"imageContainer": `Y0DNwR4UlO7wXcfR8phx`,
+	"itemInfo": `Lfq0mNng0qDFdHxCkXsN`,
+	"name": `VR1OCl60qOXrRx1IzVEa`,
+	"buy": `fO9kiPygtr0vmzsXoUxA`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2243,7 +2283,7 @@ input {
   padding: 1vmin;
   font-size: 2vmin;
   border: 0.1vmin solid var(--black);
-  border-radius: 0.5vmin;
+  border-radius: 0.2vmin;
   color: var(--black);
   background-image: none !important; /* prevent lastpass */
   outline: none;
@@ -2254,18 +2294,22 @@ input:focus {
 }
 
 button, a.vv25IKDRix2smYD5QAfA {
-  margin: 1vmin;
+  margin: 0.5vmin;
   padding: 1vmin;
-  color: var(--white);
-  background-color: var(--accent);
+  color: var(--black);
+  background-color: var(--white);
   font-size: 2vmin;
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: none;
   text-align: center;
-  border: 0.1vmin solid var(--black);
-  border-radius: 0.5vmin;
+  border: 0.1vmin solid var(--white);
   outline: none;
   cursor: pointer;
+}
+
+button:hover {
+  color: var(--accent);
+  border: 0.1vmin solid var(--accent);
 }
 
 button.M8zx7cyqKmyCcrjJaXjj {
@@ -2273,7 +2317,7 @@ button.M8zx7cyqKmyCcrjJaXjj {
   padding: 0.6vmin 0.8vmin;
 }
 
-button.M8zx7cyqKmyCcrjJaXjj {
+button.mmcnNCjhUQqEoaSf8Yur {
   font-size: 1vmin;
   padding: 0.4vmin 0.5vmin;
 }
@@ -2286,7 +2330,7 @@ button:disabled, form:invalid button[type=submit] {
 button[type=submit] {
   grid-column: span 2;
   margin: 1vmin 0 0;
-}`, "",{"version":3,"sources":["webpack://./src/scss/styles.scss"],"names":[],"mappings":"AAEA;EACE,+BAAA;EACA,2DAAA;EACA,gBAAA;AAAF;AAEA;EACE,+BAAA;EACA,2DAAA;EACA,gBAAA;AAAF;AAEA;EACE,+BAAA;EACA,2DAAA;EACA,gBAAA;AAAF;AAGA;EACE,gBAAA;EACA,gBAAA;EACA,aAAA;EACA,iBAAA;EACA,mBAAA;EACA,2BAAA;AADF;;AAIA;EACE,sBAAA;AADF;;AAIA;EACE,SAAA;EACA,oDAAA;EACA,mCAAA;EACA,kCAAA;EACA,8BAAA;EACA,UAAA;EACA,aAAA;EACA,gBAAA;AADF;;AAIA;EACE,+EAAA;AADF;;AAKA;EACE,YAAA;AAFF;;AAKA;EACE,kBAAA;AAFF;;AAKA;EACE,iBAAA;AAFF;;AAKA;EACE,kBAAA;AAFF;;AAKA;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;AAFF;;AAKA;EACE,sBAAA;AAFF;;AAKA;EACE,yBAAA;AAFF;;AAKA;EACC,kBAAA;AAFD;;AAKA;EACE,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mCAAA;EACA,oBAAA;EACA,gBAAA;EACA,kBAAA;EACA,gBAAA;EACA,gBAAA;AAFF;;AAKA;EACE,cAAA;EACA,2BAAA;EACA,kCAAA;EACA,oBAAA;AAFF;;AAKA;EACE,oBAAA;EACA,kBAAA;AAFF;;AAKA;EACE,aAAA;EACA,8BAAA;EACA,aAAA;EACA,mBAAA;AAFF;;AAKA;EACE,gBAAA;EACA,aAAA;EACA,mBAAA;AAFF;;AAKA;EACE,cAAA;EACA,gBAAA;EACA,kCAAA;EACA,sBAAA;EACA,mBAAA;EACA,iCAAA,EAAA,qBAAA;EACA,aAAA;AAFF;;AAKA;EACE,2BAAA;AAFF;;AAKA;EACE,aAAA;EACA,cAAA;EACA,mBAAA;EACA,+BAAA;EACA,gBAAA;EACA,iBAAA;EACA,qBAAA;EACA,kBAAA;EACA,kCAAA;EACA,sBAAA;EACA,aAAA;EACA,eAAA;AAFF;;AAKA;EACE,kBAAA;EACA,wBAAA;AAFF;;AAKA;EACE,gBAAA;EACA,wBAAA;AAFF;;AAKA;EACE,mBAAA;EACA,2BAAA;AAFF;;AAKA;EACE,mBAAA;EACA,iBAAA;AAFF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');\n\n@font-face {\n  font-family: 'Monument Grotesk';\n  src: url('../fonts/MonumentGroteskTrial-Regular.woff') format('woff');\n  font-weight: 400;\n}\n@font-face {\n  font-family: 'Monument Grotesk';\n  src: url('../fonts/MonumentGroteskTrial-Medium.woff') format('woff');\n  font-weight: 500;\n}\n@font-face {\n  font-family: 'Monument Grotesk';\n  src: url('../fonts/MonumentGroteskTrial-Bold.woff') format('woff');\n  font-weight: 700;\n}\n\n:root {\n  --white: #ffffff;\n  --black: #000000;\n  --bg: #e9e8e5;\n  --accent: #ff4e00;\n  --image-bg: #fafafa;\n  --sidebar-bg: 233, 232, 229;\n}\n\n*, *:before, *:after {\n  box-sizing: border-box;\n}\n\nbody {\n  margin: 0;\n  font-family: 'Monument Grotesk', 'Inter', sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: var(--white);\n  padding: 0;\n  height: 100vh;\n  font-weight: 700;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n  monospace;\n}\n\n#app {\n  height: 100%;\n}\n\n.align-ctr {\n  text-align: center;\n}\n\n.align-rt {\n  text-align: right;\n}\n\n.smaller {\n  font-size: smaller;\n}\n\n.flex-ctr-ctr {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.flex-col {\n  flex-direction: column;\n}\n\n.flex-j-end {\n  justify-content: flex-end;\n}\n\n.scroll-y {\n overflow-y: scroll;\n}\n\n.section-heading {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  background-color: var(--white);\n  color: var(--black);\n  border: .1vmin solid var(--accent);\n  border-radius: 1vmin;\n  padding: .6vmin;\n  text-align: center;\n  font-size: 2vmin;\n  font-weight: 400;\n}\n\n.form-container {\n  padding: 3vmin;\n  background-color: var(--bg);\n  border: .1vmin solid var(--black);\n  border-radius: 1vmin;\n}\n\np.error-message {\n  color: var(--accent);\n  text-align: center;\n}\n\nform {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  gap: 1.25vmin;\n  color: var(--black);\n}\n\nlabel {\n  font-size: 2vmin;\n  display: flex;\n  align-items: center;\n}\n\ninput {\n  padding: 1vmin;\n  font-size: 2vmin;\n  border: .1vmin solid var(--black);\n  border-radius: .5vmin;\n  color: var(--black);\n  background-image: none !important; /* prevent lastpass */\n  outline: none;\n}\n\ninput:focus {\n  border-color: var(--accent);\n}\n\nbutton, a.button {\n  margin: 1vmin;\n  padding: 1vmin;\n  color: var(--white);\n  background-color: var(--accent);\n  font-size: 2vmin;\n  font-weight: bold;\n  text-decoration: none;\n  text-align: center;\n  border: .1vmin solid var(--black);\n  border-radius: .5vmin;\n  outline: none;\n  cursor: pointer;\n}\n\nbutton.btn-sm {\n  font-size: 1.5vmin;\n  padding: .6vmin .8vmin;\n}\n\nbutton.btn-sm {\n  font-size: 1vmin;\n  padding: .4vmin .5vmin;\n}\n\nbutton:disabled, form:invalid button[type=\"submit\"] {\n  cursor: not-allowed;\n  background-color: var(--bg);\n} \n\nbutton[type=\"submit\"] {\n  grid-column: span 2;\n  margin: 1vmin 0 0;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/scss/styles.scss"],"names":[],"mappings":"AAEA;EACE,+BAAA;EACA,2DAAA;EACA,gBAAA;AAAF;AAEA;EACE,+BAAA;EACA,2DAAA;EACA,gBAAA;AAAF;AAEA;EACE,+BAAA;EACA,2DAAA;EACA,gBAAA;AAAF;AAGA;EACE,gBAAA;EACA,gBAAA;EACA,aAAA;EACA,iBAAA;EACA,mBAAA;EACA,2BAAA;AADF;;AAIA;EACE,sBAAA;AADF;;AAIA;EACE,SAAA;EACA,oDAAA;EACA,mCAAA;EACA,kCAAA;EACA,8BAAA;EACA,UAAA;EACA,aAAA;EACA,gBAAA;AADF;;AAIA;EACE,+EAAA;AADF;;AAKA;EACE,YAAA;AAFF;;AAKA;EACE,kBAAA;AAFF;;AAKA;EACE,iBAAA;AAFF;;AAKA;EACE,kBAAA;AAFF;;AAKA;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;AAFF;;AAKA;EACE,sBAAA;AAFF;;AAKA;EACE,yBAAA;AAFF;;AAKA;EACC,kBAAA;AAFD;;AAKA;EACE,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mCAAA;EACA,oBAAA;EACA,gBAAA;EACA,kBAAA;EACA,gBAAA;EACA,gBAAA;AAFF;;AAKA;EACE,cAAA;EACA,2BAAA;EACA,kCAAA;EACA,oBAAA;AAFF;;AAKA;EACE,oBAAA;EACA,kBAAA;AAFF;;AAKA;EACE,aAAA;EACA,8BAAA;EACA,aAAA;EACA,mBAAA;AAFF;;AAKA;EACE,gBAAA;EACA,aAAA;EACA,mBAAA;AAFF;;AAKA;EACE,cAAA;EACA,gBAAA;EACA,kCAAA;EACA,sBAAA;EACA,mBAAA;EACA,iCAAA,EAAA,qBAAA;EACA,aAAA;AAFF;;AAKA;EACE,2BAAA;AAFF;;AAKA;EACE,eAAA;EACA,cAAA;EACA,mBAAA;EACA,8BAAA;EACA,gBAAA;EACA,gBAAA;EACA,qBAAA;EACA,kBAAA;EACA,kCAAA;EACA,aAAA;EACA,eAAA;AAFF;;AAKA;EACE,oBAAA;EACA,mCAAA;AAFF;;AAKA;EACE,kBAAA;EACA,wBAAA;AAFF;;AAKA;EACE,gBAAA;EACA,wBAAA;AAFF;;AAKA;EACE,mBAAA;EACA,2BAAA;AAFF;;AAKA;EACE,mBAAA;EACA,iBAAA;AAFF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');\n\n@font-face {\n  font-family: 'Monument Grotesk';\n  src: url('../fonts/MonumentGroteskTrial-Regular.woff') format('woff');\n  font-weight: 400;\n}\n@font-face {\n  font-family: 'Monument Grotesk';\n  src: url('../fonts/MonumentGroteskTrial-Medium.woff') format('woff');\n  font-weight: 500;\n}\n@font-face {\n  font-family: 'Monument Grotesk';\n  src: url('../fonts/MonumentGroteskTrial-Bold.woff') format('woff');\n  font-weight: 700;\n}\n\n:root {\n  --white: #ffffff;\n  --black: #000000;\n  --bg: #e9e8e5;\n  --accent: #ff4e00;\n  --image-bg: #fafafa;\n  --sidebar-bg: 233, 232, 229;\n}\n\n*, *:before, *:after {\n  box-sizing: border-box;\n}\n\nbody {\n  margin: 0;\n  font-family: 'Monument Grotesk', 'Inter', sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: var(--white);\n  padding: 0;\n  height: 100vh;\n  font-weight: 700;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n  monospace;\n}\n\n#app {\n  height: 100%;\n}\n\n.align-ctr {\n  text-align: center;\n}\n\n.align-rt {\n  text-align: right;\n}\n\n.smaller {\n  font-size: smaller;\n}\n\n.flex-ctr-ctr {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.flex-col {\n  flex-direction: column;\n}\n\n.flex-j-end {\n  justify-content: flex-end;\n}\n\n.scroll-y {\n overflow-y: scroll;\n}\n\n.section-heading {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  background-color: var(--white);\n  color: var(--black);\n  border: .1vmin solid var(--accent);\n  border-radius: 1vmin;\n  padding: .6vmin;\n  text-align: center;\n  font-size: 2vmin;\n  font-weight: 400;\n}\n\n.form-container {\n  padding: 3vmin;\n  background-color: var(--bg);\n  border: .1vmin solid var(--black);\n  border-radius: 1vmin;\n}\n\np.error-message {\n  color: var(--accent);\n  text-align: center;\n}\n\nform {\n  display: grid;\n  grid-template-columns: 1fr 3fr;\n  gap: 1.25vmin;\n  color: var(--black);\n}\n\nlabel {\n  font-size: 2vmin;\n  display: flex;\n  align-items: center;\n}\n\ninput {\n  padding: 1vmin;\n  font-size: 2vmin;\n  border: .1vmin solid var(--black);\n  border-radius: .2vmin;\n  color: var(--black);\n  background-image: none !important; /* prevent lastpass */\n  outline: none;\n}\n\ninput:focus {\n  border-color: var(--accent);\n}\n\nbutton, a.button {\n  margin: 0.5vmin;\n  padding: 1vmin;\n  color: var(--black);\n  background-color: var(--white);\n  font-size: 2vmin;\n  font-weight: 700;\n  text-decoration: none;\n  text-align: center;\n  border: .1vmin solid var(--white);\n  outline: none;\n  cursor: pointer;\n}\n\nbutton:hover {\n  color: var(--accent);\n  border: .1vmin solid var(--accent);\n}\n\nbutton.btn-sm {\n  font-size: 1.5vmin;\n  padding: .6vmin .8vmin;\n}\n\nbutton.btn-xs {\n  font-size: 1vmin;\n  padding: .4vmin .5vmin;\n}\n\nbutton:disabled, form:invalid button[type=\"submit\"] {\n  cursor: not-allowed;\n  background-color: var(--bg);\n} \n\nbutton[type=\"submit\"] {\n  grid-column: span 2;\n  margin: 1vmin 0 0;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"app": `l6CL0WCu28ylNDPTYyrX`,
@@ -2301,7 +2345,8 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"form-container": `MMHxHyV5UppwvI7obxXL`,
 	"error-message": `fgWR5Asb2guMuboowfoa`,
 	"button": `vv25IKDRix2smYD5QAfA`,
-	"btn-sm": `M8zx7cyqKmyCcrjJaXjj`
+	"btn-sm": `M8zx7cyqKmyCcrjJaXjj`,
+	"btn-xs": `mmcnNCjhUQqEoaSf8Yur`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
