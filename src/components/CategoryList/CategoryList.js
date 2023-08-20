@@ -1,19 +1,42 @@
+import { useRef, useState } from 'react'
 import styles from './CategoryList.module.scss'
 
 export default function CategoryList({ categories, activeCat, setActiveCat }) {
-  const cats = categories.map(cat =>
-    <li
+  const [showHover, setShowHover] = useState(false)
+
+
+  function showHoverMenu() {
+    setShowHover(true)
+    setTimeout(() => {
+      setShowHover(false)
+    }, 10000)
+  }
+
+  function hideHoverMenu() {
+    setShowHover(false)
+  }
+
+  const cats = showHover ? categories.map(cat =>
+    < li
       key={cat}
-      className={cat === activeCat ? styles.activeCat : ''}
-      onClick={() => setActiveCat(cat)}
+      className={cat === activeCat ? styles.active : ''}
+      onClick={() => {
+        setActiveCat(cat)
+        hideHoverMenu()
+      }}
     >
       {cat}
-    </li>
-  )
+    </li >
+  ) : <li className={styles.active}>{activeCat}</li>
 
   return (
-    <ul className={styles.CategoryList}>
+    < ul
+      className={styles.CategoryList}
+      onMouseEnter={() => showHoverMenu()}
+      onMouseLeave={() => hideHoverMenu()}
+    >
       {cats}
-    </ul>
+    </ul >
+
   )
 }

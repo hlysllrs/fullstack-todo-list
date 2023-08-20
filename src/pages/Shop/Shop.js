@@ -20,9 +20,9 @@ export default function Shop({ user, setUser, cart, setCart }) {
         const cat = item.category.name
         return cats.includes(cat) ? cats : [...cats, cat]
       }, [])
-      categoriesRef.current.push('Show All')
+      categoriesRef.current.unshift('Show All')
       setMenuItems(items)
-      setActiveCat(categoriesRef.current[6])
+      setActiveCat(categoriesRef.current[0])
     }
     getItems()
     async function getCart() {
@@ -44,7 +44,7 @@ export default function Shop({ user, setUser, cart, setCart }) {
       <div>
         <CategoryList
           categories={categoriesRef.current}
-          cart={setCart}
+          activeCat={activeCat}
           setActiveCat={setActiveCat}
         />
       </div>

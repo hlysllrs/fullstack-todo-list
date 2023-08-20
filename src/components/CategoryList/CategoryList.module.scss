@@ -1,0 +1,23 @@
+.CategoryList{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 0 1rem 1rem 1rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 2rem;
+  background-color: var(--white);
+    .active {
+      color: var(--accent);
+    };
+    li {
+      list-style-type: none;
+      font-weight: 500;
+    };
+    li:hover{
+      cursor: pointer;
+    }
+}

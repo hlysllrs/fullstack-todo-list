@@ -98,8 +98,11 @@ function Cart(_ref) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ CategoryList)
 /* harmony export */ });
-/* harmony import */ var _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CategoryList.module.scss */ "./src/components/CategoryList/CategoryList.module.scss");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryList.module.scss */ "./src/components/CategoryList/CategoryList.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 function CategoryList(_ref) {
   let {
@@ -107,13 +110,30 @@ function CategoryList(_ref) {
     activeCat,
     setActiveCat
   } = _ref;
-  const cats = categories.map(cat => /*#__PURE__*/React.createElement("li", {
+  const [showHover, setShowHover] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  function showHoverMenu() {
+    setShowHover(true);
+    setTimeout(() => {
+      setShowHover(false);
+    }, 10000);
+  }
+  function hideHoverMenu() {
+    setShowHover(false);
+  }
+  const cats = showHover ? categories.map(cat => /*#__PURE__*/React.createElement("li", {
     key: cat,
-    className: cat === activeCat ? _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].activeCat : '',
-    onClick: () => setActiveCat(cat)
-  }, cat));
+    className: cat === activeCat ? _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].active : '',
+    onClick: () => {
+      setActiveCat(cat);
+      hideHoverMenu();
+    }
+  }, cat)) : /*#__PURE__*/React.createElement("li", {
+    className: _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].active
+  }, activeCat);
   return /*#__PURE__*/React.createElement("ul", {
-    className: _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].CategoryList
+    className: _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].CategoryList,
+    onMouseEnter: () => showHoverMenu(),
+    onMouseLeave: () => hideHoverMenu()
   }, cats);
 }
 
@@ -1120,9 +1140,9 @@ function Shop(_ref) {
           const cat = item.category.name;
           return cats.includes(cat) ? cats : [...cats, cat];
         }, []);
-        categoriesRef.current.push('Show All');
+        categoriesRef.current.unshift('Show All');
         setMenuItems(items);
-        setActiveCat(categoriesRef.current[6]);
+        setActiveCat(categoriesRef.current[0]);
       });
       return _getItems.apply(this, arguments);
     }
@@ -1156,7 +1176,7 @@ function Shop(_ref) {
     className: _Shop_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].Shop
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_components_CategoryList_CategoryList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     categories: categoriesRef.current,
-    cart: setCart,
+    activeCat: activeCat,
     setActiveCat: setActiveCat
   })), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_2__["default"], {
     menuItems: activeCat === 'Show All' ? menuItems : menuItems.filter(item => item.category.name === activeCat),
@@ -1541,9 +1561,34 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.l8hJyaPvo9smd6LiNqWK {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 0 1rem 1rem 1rem;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 2rem;
+  background-color: var(--white);
+}
+.l8hJyaPvo9smd6LiNqWK ._scckhAN2KPE1u73kR14 {
+  color: var(--accent);
+}
+.l8hJyaPvo9smd6LiNqWK li {
+  list-style-type: none;
+  font-weight: 500;
+}
+.l8hJyaPvo9smd6LiNqWK li:hover {
+  cursor: pointer;
+}`, "",{"version":3,"sources":["webpack://./src/components/CategoryList/CategoryList.module.scss"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,MAAA;EACA,SAAA;EACA,yBAAA;EACA,cAAA;EACA,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,uBAAA;EACA,eAAA;EACA,8BAAA;AACF;AAAI;EACE,oBAAA;AAEN;AAAI;EACE,qBAAA;EACA,gBAAA;AAEN;AAAI;EACE,eAAA;AAEN","sourcesContent":[".CategoryList{\n  position: absolute;\n  top: 0;\n  left: 50%;\n  padding: 0 1rem 1rem 1rem;\n  margin: 0.5rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: flex-start;\n  font-size: 2rem;\n  background-color: var(--white);\n    .active {\n      color: var(--accent);\n    };\n    li {\n      list-style-type: none;\n      font-weight: 500;\n    };\n    li:hover{\n      cursor: pointer;\n    }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"CategoryList": `l8hJyaPvo9smd6LiNqWK`,
+	"active": `_scckhAN2KPE1u73kR14`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -1601,8 +1646,8 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
   width: 20vw;
-  padding: 0.5rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,eAAA;AACF","sourcesContent":[".Logo {\n  width: 20vw;\n  padding: 0.5rem;\n}"],"sourceRoot":""}]);
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,+BAAA;AACF","sourcesContent":[".Logo {\n  width: 20vw;\n  padding: 0.5rem 0.5rem 0 0.5rem;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"Logo": `EDeinQzfS2N2rVW_Z1GP`
@@ -1671,14 +1716,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.X4tFBfG4MKknHvd01CKE {
   background-color: var(--image-bg);
   padding: 1.5rem;
 }
-.X4tFBfG4MKknHvd01CKE .Y0DNwR4UlO7wXcfR8phx .m3PDhEn0C63zoHWlnVTV {
-  max-height: 25vh;
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA;EACE,eAAA;AACF;AAAE;EACE,gBAAA;EACA,eAAA;EACA,iCAAA;EACA,eAAA;AAEJ;AADI;EACE,gBAAA;AAGN","sourcesContent":[".MenuListItem {\n  margin: .75rem;\n  .imageContainer {\n    max-height: 30vh;\n    max-width: 25vw;\n    background-color: var(--image-bg);\n    padding: 1.5rem;\n    .itemImage {\n      max-height: 25vh;\n      \n    }\n  }\n}"],"sourceRoot":""}]);
+.X4tFBfG4MKknHvd01CKE .Y0DNwR4UlO7wXcfR8phx img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: scale-down;
+  object-fit: scale-down;
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA;EACE,eAAA;AACF;AAAE;EACE,gBAAA;EACA,eAAA;EACA,iCAAA;EACA,eAAA;AAEJ;AADI;EACE,WAAA;EACA,YAAA;EACA,yBAAA;EACG,sBAAA;AAGT","sourcesContent":[".MenuListItem {\n  margin: .75rem;\n  .imageContainer {\n    max-height: 30vh;\n    max-width: 25vw;\n    background-color: var(--image-bg);\n    padding: 1.5rem;\n    img {\n      width: 100%;\n      height: 100%;\n      -o-object-fit: scale-down;\n         object-fit: scale-down;\n    }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuListItem": `X4tFBfG4MKknHvd01CKE`,
-	"imageContainer": `Y0DNwR4UlO7wXcfR8phx`,
-	"itemImage": `m3PDhEn0C63zoHWlnVTV`
+	"imageContainer": `Y0DNwR4UlO7wXcfR8phx`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
