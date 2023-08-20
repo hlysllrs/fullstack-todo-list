@@ -20,8 +20,9 @@ export default function Shop({ user, setUser, cart, setCart }) {
         const cat = item.category.name
         return cats.includes(cat) ? cats : [...cats, cat]
       }, [])
+      categoriesRef.current.push('Show All')
       setMenuItems(items)
-      setActiveCat(categoriesRef.current[0])
+      setActiveCat(categoriesRef.current[6])
     }
     getItems()
     async function getCart() {
@@ -31,7 +32,7 @@ export default function Shop({ user, setUser, cart, setCart }) {
     getCart()
   }, [])
 
-  /* ----- Event Handlers ===== */
+  /* ----- Event Handlers ----- */
   async function handleAddToOrder(itemId) {
     const updatedCart = await ordersAPI.addItemToCart(itemId)
     setCart(updatedCart)
@@ -48,7 +49,7 @@ export default function Shop({ user, setUser, cart, setCart }) {
         />
       </div>
       <MenuList
-        menuItems={menuItems.filter(item => item.category.name === activeCat)}
+        menuItems={activeCat === 'Show All' ? menuItems : menuItems.filter(item => item.category.name === activeCat)}
         handleAddToOrder={handleAddToOrder}
       />
     </main>

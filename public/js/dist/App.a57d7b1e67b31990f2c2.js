@@ -1120,8 +1120,9 @@ function Shop(_ref) {
           const cat = item.category.name;
           return cats.includes(cat) ? cats : [...cats, cat];
         }, []);
+        categoriesRef.current.push('Show All');
         setMenuItems(items);
-        setActiveCat(categoriesRef.current[0]);
+        setActiveCat(categoriesRef.current[6]);
       });
       return _getItems.apply(this, arguments);
     }
@@ -1139,7 +1140,7 @@ function Shop(_ref) {
     getCart();
   }, []);
 
-  /* ----- Event Handlers ===== */
+  /* ----- Event Handlers ----- */
   function handleAddToOrder(_x) {
     return _handleAddToOrder.apply(this, arguments);
   }
@@ -1158,7 +1159,7 @@ function Shop(_ref) {
     cart: setCart,
     setActiveCat: setActiveCat
   })), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    menuItems: menuItems.filter(item => item.category.name === activeCat),
+    menuItems: activeCat === 'Show All' ? menuItems : menuItems.filter(item => item.category.name === activeCat),
     handleAddToOrder: handleAddToOrder
   }));
 }
