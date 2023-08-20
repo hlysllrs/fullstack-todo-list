@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 import styles from './App.module.scss'
-import AuthPage from '../AuthPage/AuthPage'
-import NewOrderPage from '../NewOrderPage/NewOrderPage'
 import Home from '../Home/Home'
 import Shop from '../Shop/Shop'
 import Checkout from '../Checkout/Checkout'
@@ -12,7 +10,7 @@ import Logo from '../../components/Logo/Logo'
 import NavBar from '../../components/NavBar/NavBar'
 import UserPanel from '../../components/UserPanel/UserPanel'
 import Cart from '../../components/Cart/Cart'
-import { getToken, getUser, signUp } from '../../utilities/users-service'
+import { getUser, signUp } from '../../utilities/users-service'
 import * as ordersAPI from '../../utilities/orders-api'
 import { createPortal } from 'react-dom'
 
@@ -46,6 +44,7 @@ export default function App() {
   const [showUserPanel, setShowUserPanel] = useState(false)
   const [cart, setCart] = useState(null)
   const navigate = useNavigate()
+  let location = useLocation()
 
   // automatically log in as guest user
   useEffect(() => {
@@ -99,14 +98,15 @@ export default function App() {
 
   return (
     <main className={styles.App}>
-      <Logo className={styles.Logo} handleLogoClick={handleLogoClick} />
+      <Logo className={styles.Logo} location={location} handleLogoClick={handleLogoClick} />
       <NavBar
         className={styles.NavBar}
         user={user}
         cart={cart}
         showCart={showCart}
         toggleShowCart={toggleShowCart}
-        toggleShowUserPanel={toggleShowUserPanel} />
+        toggleShowUserPanel={toggleShowUserPanel}
+        location={location} />
       <div>
         {showCart && createPortal(<Cart
           className={styles.Cart + ' cart'}
@@ -124,7 +124,7 @@ export default function App() {
       </div>
       <Routes>
         {/* client-side route that renders the component instance if the path matches the url in the address bar */}
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home className={styles.Home} />} />
         <Route path="/shop" element={<Shop cart={cart} setCart={setCart} />} />
         <Route path="/checkout" element={<Checkout user={user} setUser={setUser} handleChangeQty={handleChangeQty} cart={cart} setCart={setCart} />} />
         <Route path="/orders" element={<OrderHistory user={user} setUser={setUser} />} />

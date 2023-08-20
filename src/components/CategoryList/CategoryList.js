@@ -31,7 +31,7 @@ export default function CategoryList({ categories, activeCat, setActiveCat }) {
 
   return (
     < ul
-      className={styles.CategoryList}
+      className={`${styles.CategoryList} ${!showHover ? styles.singleCat : ''}`}
       onMouseEnter={() => showHoverMenu()}
       onMouseLeave={() => hideHoverMenu()}
     >

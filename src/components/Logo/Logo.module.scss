@@ -1,4 +1,8 @@
 .Logo {
   width: 20vw;
   padding: 0.5rem 0.5rem 0 0.5rem;
+  position: relative;
+  .whiteLogo {
+    filter: invert(100%);
+  }
 }
