@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 import styles from './App.module.scss'
 import Home from '../Home/Home'
@@ -14,31 +14,7 @@ import { getUser, signUp } from '../../utilities/users-service'
 import * as ordersAPI from '../../utilities/orders-api'
 import { createPortal } from 'react-dom'
 
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case 'toggleCart':
-//       return { ...state, showCart: !state.showCart }
-//     case 'toggleUserPanel':
-//       return { ...state, showUserPanel: !state.showUserPanel }
-//     default:
-//       throw new Error()
-//   }
-// }
-
-const ACTIONS = {
-  TOGGLE_CART: 'toggleCart',
-  TOGGLE_USER_PANEL: 'toggleUserPanel',
-  SET_USER: 'setUser',
-  UPDATE_CART: 'updateCart',
-
-}
-
 export default function App() {
-  // const [state, dispatch] = useReducer(reducer, {
-  //   user: getUser(),
-  //   showCart: false,
-  //   showUserPanel: false
-  // })
   const [user, setUser] = useState(getUser());
   const [showCart, setShowCart] = useState(false)
   const [showUserPanel, setShowUserPanel] = useState(false)
@@ -130,8 +106,6 @@ export default function App() {
         <Route path="/checkout" element={<Checkout user={user} setUser={setUser} handleChangeQty={handleChangeQty} order={cart} setCart={setCart} location={location} />} />
         <Route path="/orders" element={<OrderHistory user={user} setUser={setUser} location={location} />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        {/* <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
-        <Route path="/orders" element={<OrderHistoryPage user={user} setUser={setUser} />} /> */}
         {/* redirect to /home if path in address bar hasn't matched a <Route> above */}
         <Route path="/*" element={<Navigate to="/home" />} />
       </Routes>

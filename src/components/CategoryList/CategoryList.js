@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import styles from './CategoryList.module.scss'
 
 export default function CategoryList({ categories, activeCat, setActiveCat }) {

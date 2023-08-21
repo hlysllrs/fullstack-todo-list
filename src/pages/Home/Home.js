@@ -1,5 +1,4 @@
 import styles from './Home.module.scss'
-import MenuList from '../../components/MenuList/MenuList'
 
 export default function Home(props) {
   return (

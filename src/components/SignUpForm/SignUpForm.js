@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import styles from './SignUpForm.module.scss'
 import { updateUser } from '../../utilities/users-service'
 
 export default function SignUpForm({ setUser }) {
