@@ -4,7 +4,7 @@ import * as ordersAPI from '../../utilities/orders-api'
 import OrderList from '../../components/OrderList/OrderList'
 import OrderDetail from '../../components/OrderDetail/OrderDetail'
 
-export default function OrderHistory(props) {
+export default function OrderHistory({ location }) {
   /* ----- State ----- */
   const [orders, setOrders] = useState([])
   const [activeOrder, setActiveOrder] = useState(null)
@@ -38,6 +38,7 @@ export default function OrderHistory(props) {
       </aside>
       <OrderDetail
         order={activeOrder}
+        location={location}
       />
     </main>
   )

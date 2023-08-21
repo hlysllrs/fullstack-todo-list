@@ -20,7 +20,7 @@
     padding-left: 0.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     .itemInfo {
       display: flex;
       flex-direction: column;
@@ -36,10 +36,7 @@
     }
   }
   .qty{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    margin-top: 3vmin;
     div{
       display: flex;
       align-items: center;
@@ -53,9 +50,11 @@
         font-size: 1.7vmin;
         font-weight: 400;
       }
+      span.paid {
+        padding: 0;
+      }
     }
     .extPrice {
-      align-self: flex-end;
       font-weight: 600;
       font-size: 1.8vmin;
     }

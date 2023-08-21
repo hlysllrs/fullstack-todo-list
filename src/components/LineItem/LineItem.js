@@ -19,7 +19,7 @@ export default function LineItem({ lineItem, isPaid, handleChangeQty }) {
                 onClick={() => handleChangeQty(lineItem.item._id, lineItem.qty - 1)}
               >-</button>
             }
-            <span>{lineItem.qty}</span>
+            <span className={isPaid ? styles.paid : ''}>{`${isPaid ? 'qty: ' : ''}${lineItem.qty}`}</span>
             {!isPaid &&
               <button
                 className={styles.qtyBtn}

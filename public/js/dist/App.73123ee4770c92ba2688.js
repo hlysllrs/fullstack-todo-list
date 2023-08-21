@@ -22,7 +22,6 @@ function Cart(_ref) {
   let {
     cart,
     handleChangeQty,
-    handleCheckout,
     toggleShowCart
   } = _ref;
   if (!cart) return null;
@@ -45,12 +44,10 @@ function Cart(_ref) {
     className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].cartHeading
   }, /*#__PURE__*/React.createElement("span", {
     className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].itemQty
-  }, "".concat(cart.totalQty, " item").concat(cart.totalQty > 1 ? 's' : '')), /*#__PURE__*/React.createElement("button", {
+  }, "".concat(cart.totalQty, " item").concat(cart.totalQty !== 1 ? 's' : '')), /*#__PURE__*/React.createElement("button", {
     className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].closeBtn,
     onClick: toggleShowCart
-  }, "close")), /*#__PURE__*/React.createElement("span", {
-    className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].date
-  }, new Date(cart.updatedAt).toLocaleDateString()), /*#__PURE__*/React.createElement("div", {
+  }, "close")), /*#__PURE__*/React.createElement("div", {
     className: "".concat(_Cart_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].lineItemContainer, " scroll-y")
   }, lineItems.length ? /*#__PURE__*/React.createElement(React.Fragment, null, lineItems, /*#__PURE__*/React.createElement("section", {
     className: _Cart_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].total
@@ -157,7 +154,9 @@ function LineItem(_ref) {
   }, /*#__PURE__*/React.createElement("div", null, !isPaid && /*#__PURE__*/React.createElement("button", {
     className: _lineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].qtyBtn,
     onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty - 1)
-  }, "-"), /*#__PURE__*/React.createElement("span", null, lineItem.qty), !isPaid && /*#__PURE__*/React.createElement("button", {
+  }, "-"), /*#__PURE__*/React.createElement("span", {
+    className: isPaid ? _lineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].paid : ''
+  }, "".concat(isPaid ? 'qty: ' : '').concat(lineItem.qty)), !isPaid && /*#__PURE__*/React.createElement("button", {
     className: _lineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].qtyBtn,
     onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty + 1)
   }, "+")), /*#__PURE__*/React.createElement("div", {
@@ -414,20 +413,8 @@ function OrderDetail(_ref) {
   return /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
   }, /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].orderHeading
-  }, order.isPaid ? /*#__PURE__*/React.createElement("span", null, "order", /*#__PURE__*/React.createElement("span", {
-    className: "smaller"
-  }, order.orderId)) : /*#__PURE__*/React.createElement("span", null, "new order "), /*#__PURE__*/React.createElement("span", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].date
-  }, new Date(order.updatedAt).toLocaleDateString())), /*#__PURE__*/React.createElement("div", {
-    className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].lineItemContainer, " flex-ctr-ctr flex-col scroll-y")
-  }, lineItems, location.pathname === '/checkout' ? /*#__PURE__*/React.createElement(React.Fragment, null) : /*#__PURE__*/React.createElement("section", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].total
-  }, /*#__PURE__*/React.createElement("span", null, order.totalQty), /*#__PURE__*/React.createElement("span", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
-  }, "$", order.orderTotal.toFixed(2)), order.isPaid && /*#__PURE__*/React.createElement("span", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
-  }, "TOTAL\xA0\xA0"))));
+    className: "flex-ctr-ctr flex-col scroll-y"
+  }, lineItems));
 }
 
 /***/ }),
@@ -489,14 +476,16 @@ function OrderListItem(_ref) {
     className: "".concat(_OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderListItem, " ").concat(isSelected ? _OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].selected : '', " "),
     onClick: () => handleSelectOrder(order)
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, "Order Id: ", /*#__PURE__*/React.createElement("span", {
-    className: "smaller"
+    className: _OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].orderId
   }, order.orderId)), /*#__PURE__*/React.createElement("div", {
-    className: "smaller"
+    className: _OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].orderDate
   }, new Date(order.updatedAt).toLocaleDateString())), /*#__PURE__*/React.createElement("div", {
     className: "align-rt"
-  }, /*#__PURE__*/React.createElement("div", null, "$", order.orderTotal.toFixed(2)), /*#__PURE__*/React.createElement("div", {
-    className: "smaller"
-  }, order.totalQty, " Item", order.totalQty > 1 ? 's' : '')));
+  }, /*#__PURE__*/React.createElement("div", {
+    className: _OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].orderTotal
+  }, "$", order.orderTotal.toFixed(2)), /*#__PURE__*/React.createElement("div", {
+    className: _OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].orderOty
+  }, order.totalQty, " item", order.totalQty > 1 ? 's' : '')));
 }
 
 /***/ }),
@@ -906,7 +895,8 @@ function App() {
     path: "/orders",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_OrderHistory_OrderHistory__WEBPACK_IMPORTED_MODULE_5__["default"], {
       user: user,
-      setUser: setUser
+      setUser: setUser,
+      location: location
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
     path: "/wishlist",
@@ -1051,7 +1041,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-function OrderHistory(props) {
+function OrderHistory(_ref) {
+  let {
+    location
+  } = _ref;
   /* ----- State ----- */
   const [orders, setOrders] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [activeOrder, setActiveOrder] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
@@ -1089,7 +1082,8 @@ function OrderHistory(props) {
     activeOrder: activeOrder,
     handleSelectOrder: handleSelectOrder
   })), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    order: activeOrder
+    order: activeOrder,
+    location: location
   }));
 }
 
@@ -1490,6 +1484,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.M1tX9q3raf3QxsC1ifUo {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 0.5rem;
 }
 .C7dJh9eaRHcyCnarJeaw .JdtAf5QkJ2mL6YY61_mC .MDUoVIMBptRrUJ7RKa7Y {
   font-size: 3.5vmin;
@@ -1498,10 +1493,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.M1tX9q3raf3QxsC1ifUo {
 .C7dJh9eaRHcyCnarJeaw .JdtAf5QkJ2mL6YY61_mC .E10I_ZjOppVa0duVVksq {
   font-size: 2.5vmin;
   padding: 0.25rem 0.5rem;
-}
-.C7dJh9eaRHcyCnarJeaw .eKOWYvcq3MZfzTKg9R4w {
-  padding-bottom: 0.5rem;
-  font-weight: 400;
 }
 .C7dJh9eaRHcyCnarJeaw .yG3HbwKAHqCgIVtbzrpf {
   align-self: flex-start;
@@ -1512,6 +1503,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.M1tX9q3raf3QxsC1ifUo {
   justify-items: start;
   width: 100%;
   flex-grow: 1;
+}
+.C7dJh9eaRHcyCnarJeaw .yG3HbwKAHqCgIVtbzrpf .yyjoF3I37O7BAtMaddSA {
+  width: 100%;
+  font-size: 3.5vmin;
+  font-weight: 700;
 }
 .C7dJh9eaRHcyCnarJeaw .m0qyFnmklRhut0oNtVov {
   align-self: flex-end;
@@ -1531,7 +1527,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.M1tX9q3raf3QxsC1ifUo {
   color: var(--accent);
   font-size: 2.6vmin;
   padding: 0.25rem 0.5rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/Cart/Cart.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,WAAA;EACA,oCAAA;AACF;;AAEA;EACE,kBAAA;EACA,MAAA;EACA,QAAA;EACA,gBAAA;EACA,cAAA;EACA,aAAA;EACA,8BAAA;EACA,aAAA;EACA,sBAAA;EACA,6BAAA;EACA,uBAAA;EACA,eAAA;EACA,gDAAA;AACF;AAAE;EACE,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;AAEJ;AADI;EACE,kBAAA;EACA,gBAAA;AAGN;AADI;EACE,kBAAA;EACA,uBAAA;AAGN;AAAE;EACE,sBAAA;EACA,gBAAA;AAEJ;AAAE;EACE,sBAAA;EACA,kBAAA;EACA,aAAA;EACA,0BAAA;EACA,mBAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;AAEJ;AAAE;EACE,oBAAA;EACA,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,oBAAA;EACA,kBAAA;EACA,sCAAA;AAEJ;AADI;EACE,kBAAA;EACA,mBAAA;AAGN;AADI;EACE,oBAAA;EACA,kBAAA;EACA,uBAAA;AAGN","sourcesContent":[".CartBackground  {\n  height: 100%;\n  width: 100%;\n  background-color: rgb(233,232,229);\n}\n\n.CartPanel{\n  position: absolute;\n  top: 0;\n  right: 0;\n  min-width: 200px;\n  max-width: 30%;\n  height: 100vh;\n  background-color: var(--white);\n  display: flex;\n  flex-direction: column;\n  justify-content: space-evenly;\n  align-items: flex-start;\n  padding: 0.5rem;\n  box-shadow: 0 0 0 100vw rgba(233, 232, 229, 0.4);\n  .cartHeading {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    .itemQty {\n      font-size: 3.5vmin;\n      font-weight: 700;\n    }\n    .closeBtn {\n      font-size: 2.5vmin;\n      padding: 0.25rem 0.5rem;\n    }\n  }\n  .date {\n    padding-bottom: 0.5rem;\n    font-weight: 400;\n  }\n  .lineItemContainer {\n    align-self: flex-start;\n    position: relative;\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-auto-rows: 1fr;\n    justify-items: start;\n    width: 100%;\n    flex-grow: 1;\n  }\n  .total {\n    align-self: flex-end;\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    color: var(--black);\n    padding-top: 0.25rem;\n    margin-top: 0.5rem;\n    border-top: .1vmin solid var(--black);\n    span {\n      font-size: 2.8vmin;\n      color: var(--black);\n    }\n    .checkoutBtn {\n      color: var(--accent);\n      font-size: 2.6vmin;\n      padding: 0.25rem 0.5rem;\n    }\n  }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/Cart/Cart.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,WAAA;EACA,oCAAA;AACF;;AAEA;EACE,kBAAA;EACA,MAAA;EACA,QAAA;EACA,gBAAA;EACA,cAAA;EACA,aAAA;EACA,8BAAA;EACA,aAAA;EACA,sBAAA;EACA,6BAAA;EACA,uBAAA;EACA,eAAA;EACA,gDAAA;AACF;AAAE;EACE,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,sBAAA;AAEJ;AADI;EACE,kBAAA;EACA,gBAAA;AAGN;AADI;EACE,kBAAA;EACA,uBAAA;AAGN;AAAE;EACE,sBAAA;EACA,kBAAA;EACA,aAAA;EACA,0BAAA;EACA,mBAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;AAEJ;AADI;EACE,WAAA;EACA,kBAAA;EACA,gBAAA;AAGN;AAAE;EACE,oBAAA;EACA,WAAA;EACA,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,oBAAA;EACA,kBAAA;EACA,sCAAA;AAEJ;AADI;EACE,kBAAA;EACA,mBAAA;AAGN;AADI;EACE,oBAAA;EACA,kBAAA;EACA,uBAAA;AAGN","sourcesContent":[".CartBackground  {\n  height: 100%;\n  width: 100%;\n  background-color: rgb(233,232,229);\n}\n\n.CartPanel{\n  position: absolute;\n  top: 0;\n  right: 0;\n  min-width: 200px;\n  max-width: 30%;\n  height: 100vh;\n  background-color: var(--white);\n  display: flex;\n  flex-direction: column;\n  justify-content: space-evenly;\n  align-items: flex-start;\n  padding: 0.5rem;\n  box-shadow: 0 0 0 100vw rgba(233, 232, 229, 0.4);\n  .cartHeading {\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding-bottom: 0.5rem;\n    .itemQty {\n      font-size: 3.5vmin;\n      font-weight: 700;\n    }\n    .closeBtn {\n      font-size: 2.5vmin;\n      padding: 0.25rem 0.5rem;\n    }\n  }\n  .lineItemContainer {\n    align-self: flex-start;\n    position: relative;\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-auto-rows: 1fr;\n    justify-items: start;\n    width: 100%;\n    flex-grow: 1;\n    .empty {\n      width: 100%;\n      font-size: 3.5vmin;\n      font-weight: 700;\n    }\n  }\n  .total {\n    align-self: flex-end;\n    width: 100%;\n    display: flex;\n    justify-content: space-between;\n    color: var(--black);\n    padding-top: 0.25rem;\n    margin-top: 0.5rem;\n    border-top: .1vmin solid var(--black);\n    span {\n      font-size: 2.8vmin;\n      color: var(--black);\n    }\n    .checkoutBtn {\n      color: var(--accent);\n      font-size: 2.6vmin;\n      padding: 0.25rem 0.5rem;\n    }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"CartBackground": `M1tX9q3raf3QxsC1ifUo`,
@@ -1539,8 +1535,8 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"cartHeading": `JdtAf5QkJ2mL6YY61_mC`,
 	"itemQty": `MDUoVIMBptRrUJ7RKa7Y`,
 	"closeBtn": `E10I_ZjOppVa0duVVksq`,
-	"date": `eKOWYvcq3MZfzTKg9R4w`,
 	"lineItemContainer": `yG3HbwKAHqCgIVtbzrpf`,
+	"empty": `yyjoF3I37O7BAtMaddSA`,
 	"total": `m0qyFnmklRhut0oNtVov`,
 	"checkoutBtn": `q2WUPIOIjVIZHAMUMQT3`
 };
@@ -1647,7 +1643,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.mACqqI9gTfRkChdFGhzB {
   padding-left: 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .mACqqI9gTfRkChdFGhzB .YtlqXpcNRPDJnzNJMpJx .wbyN33g5YUFux_frqThH {
   display: flex;
@@ -1663,10 +1659,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.mACqqI9gTfRkChdFGhzB {
   font-size: 1.7vmin;
 }
 .mACqqI9gTfRkChdFGhzB .pFYW8xgdqLFdCNONuSBx {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  margin-top: 3vmin;
 }
 .mACqqI9gTfRkChdFGhzB .pFYW8xgdqLFdCNONuSBx div {
   display: flex;
@@ -1682,11 +1675,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.mACqqI9gTfRkChdFGhzB {
   font-size: 1.7vmin;
   font-weight: 400;
 }
+.mACqqI9gTfRkChdFGhzB .pFYW8xgdqLFdCNONuSBx div span.SzzNwHbfflhA66WQyJ_y {
+  padding: 0;
+}
 .mACqqI9gTfRkChdFGhzB .pFYW8xgdqLFdCNONuSBx .JpL18i_EOmd5_ZNZsKtx {
-  align-self: flex-end;
   font-weight: 600;
   font-size: 1.8vmin;
-}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/lineItem.module.scss"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,aAAA;EACA,8BAAA;AACF;AAAE;EACE,iCAAA;EACA,eAAA;EACA,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;AAEJ;AADI;EACE,WAAA;EACA,gBAAA;EACA,yBAAA;EACG,sBAAA;AAGT;AAAE;EACE,oBAAA;EACA,aAAA;EACA,sBAAA;EACA,8BAAA;AAEJ;AADI;EACE,aAAA;EACA,sBAAA;EACA,2BAAA;AAGN;AAFM;EACE,gBAAA;EACA,kBAAA;AAIR;AAFM;EACE,gBAAA;EACA,kBAAA;AAIR;AAAE;EACE,aAAA;EACA,sBAAA;EACA,yBAAA;EACA,qBAAA;AAEJ;AADI;EACE,aAAA;EACA,mBAAA;AAGN;AAFM;EACE,uBAAA;EACA,kBAAA;EACA,gBAAA;AAIR;AAFM;EACE,iBAAA;EACA,kBAAA;EACA,gBAAA;AAIR;AADI;EACE,oBAAA;EACA,gBAAA;EACA,kBAAA;AAGN","sourcesContent":[".LineItem {\n  padding: 0.25rem 0;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  .imgContainer {\n    background-color: var(--image-bg);\n    padding: 1.5rem;\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-grow: 1;\n    .itemImage {\n      width: 100%;\n      max-height: 100%;\n      -o-object-fit: scale-down;\n         object-fit: scale-down;\n    }\n  }\n  .itemDetails {\n    padding-left: 0.5rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    .itemInfo {\n      display: flex;\n      flex-direction: column;\n      justify-content: flex-start;\n      .itemName {\n        font-weight: 600;\n        font-size: 1.8vmin;\n      }\n      .itemPrice {\n        font-weight: 400;\n        font-size: 1.7vmin;\n      }\n    }\n  }\n  .qty{\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-end;\n    align-items: flex-end;\n    div{\n      display: flex;\n      align-items: center;\n      .qtyBtn { \n        padding: 0.25rem 0.5rem;\n        font-size: 1.6vmin;\n        font-weight: 700;\n      }\n      span {\n        padding: 0 0.5rem;\n        font-size: 1.7vmin;\n        font-weight: 400;\n      }\n    }\n    .extPrice {\n      align-self: flex-end;\n      font-weight: 600;\n      font-size: 1.8vmin;\n    }\n  }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/lineItem.module.scss"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,aAAA;EACA,8BAAA;AACF;AAAE;EACE,iCAAA;EACA,eAAA;EACA,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;AAEJ;AADI;EACE,WAAA;EACA,gBAAA;EACA,yBAAA;EACG,sBAAA;AAGT;AAAE;EACE,oBAAA;EACA,aAAA;EACA,sBAAA;EACA,2BAAA;AAEJ;AADI;EACE,aAAA;EACA,sBAAA;EACA,2BAAA;AAGN;AAFM;EACE,gBAAA;EACA,kBAAA;AAIR;AAFM;EACE,gBAAA;EACA,kBAAA;AAIR;AAAE;EACE,iBAAA;AAEJ;AADI;EACE,aAAA;EACA,mBAAA;AAGN;AAFM;EACE,uBAAA;EACA,kBAAA;EACA,gBAAA;AAIR;AAFM;EACE,iBAAA;EACA,kBAAA;EACA,gBAAA;AAIR;AAFM;EACE,UAAA;AAIR;AADI;EACE,gBAAA;EACA,kBAAA;AAGN","sourcesContent":[".LineItem {\n  padding: 0.25rem 0;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  .imgContainer {\n    background-color: var(--image-bg);\n    padding: 1.5rem;\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-grow: 1;\n    .itemImage {\n      width: 100%;\n      max-height: 100%;\n      -o-object-fit: scale-down;\n         object-fit: scale-down;\n    }\n  }\n  .itemDetails {\n    padding-left: 0.5rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    .itemInfo {\n      display: flex;\n      flex-direction: column;\n      justify-content: flex-start;\n      .itemName {\n        font-weight: 600;\n        font-size: 1.8vmin;\n      }\n      .itemPrice {\n        font-weight: 400;\n        font-size: 1.7vmin;\n      }\n    }\n  }\n  .qty{\n    margin-top: 3vmin;\n    div{\n      display: flex;\n      align-items: center;\n      .qtyBtn { \n        padding: 0.25rem 0.5rem;\n        font-size: 1.6vmin;\n        font-weight: 700;\n      }\n      span {\n        padding: 0 0.5rem;\n        font-size: 1.7vmin;\n        font-weight: 400;\n      }\n      span.paid {\n        padding: 0;\n      }\n    }\n    .extPrice {\n      font-weight: 600;\n      font-size: 1.8vmin;\n    }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"LineItem": `mACqqI9gTfRkChdFGhzB`,
@@ -1698,6 +1693,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"itemPrice": `rxkKSh8d7y2fOG80gWgw`,
 	"qty": `pFYW8xgdqLFdCNONuSBx`,
 	"qtyBtn": `ccNxXIugCXaigtB5fyN8`,
+	"paid": `SzzNwHbfflhA66WQyJ_y`,
 	"extPrice": `JpL18i_EOmd5_ZNZsKtx`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -1730,7 +1726,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
 }
 .EDeinQzfS2N2rVW_Z1GP .yKZwcRZ95X45OhZYOwuY {
   filter: invert(100%);
-}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,eAAA;EACA,kBAAA;AACF;AAAE;EACE,oBAAA;AAEJ","sourcesContent":[".Logo {\n  width: 20vw;\n  padding: 0.5rem;\n  position: relative;\n  .whiteLogo {\n    filter: invert(100%);\n  }\n}"],"sourceRoot":""}]);
+}
+
+.EDeinQzfS2N2rVW_Z1GP:hover {
+  cursor: pointer;
+}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,eAAA;EACA,kBAAA;AACF;AAAE;EACE,oBAAA;AAEJ;;AACA;EACE,eAAA;AAEF","sourcesContent":[".Logo {\n  width: 20vw;\n  padding: 0.5rem;\n  position: relative;\n  .whiteLogo {\n    filter: invert(100%);\n  }\n}\n.Logo:hover {\n  cursor: pointer;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"Logo": `EDeinQzfS2N2rVW_Z1GP`,
@@ -1926,15 +1926,9 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB .eKYVt3atxJxz2kRfNDKE {
-  font-size: 2.5vmin;
-  font-weight: 600;
-}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AACE;EACE,kBAAA;EACA,gBAAA;AAAJ","sourcesContent":[".OrderDetail {\n  .orderHeading {\n    font-size: 2.5vmin;\n    font-weight: 600;\n  }\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {
-	"OrderDetail": `cPR75kdAXDGVxib0PszB`,
-	"orderHeading": `eKYVt3atxJxz2kRfNDKE`
-};
+___CSS_LOADER_EXPORT___.locals = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -1958,9 +1952,14 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.zqVYKU3SzotKremHzxQ_ {
+  font-weight: 600;
+  font-size: 1.8vmin;
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderList/OrderList.module.scss"],"names":[],"mappings":"AAAA;EACE,gBAAA;EACA,kBAAA;AACF","sourcesContent":[".noOrders {\n  font-weight: 600;\n  font-size: 1.8vmin;\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"noOrders": `zqVYKU3SzotKremHzxQ_`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -1984,9 +1983,35 @@ ___CSS_LOADER_EXPORT___.locals = {};
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.SbDKL2bctOyC5ZgA0KfW {
+  color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+}
+.SbDKL2bctOyC5ZgA0KfW .pkpuQdpyyjAwiixhfF0e, .SbDKL2bctOyC5ZgA0KfW .Hw5GlM45rBbJXT4xqz_6, .SbDKL2bctOyC5ZgA0KfW .dPGiBijH6bkYBn2STRuN, .SbDKL2bctOyC5ZgA0KfW .qD9JjT9X14RLezQuCscH {
+  font-weight: 600;
+  font-size: 1.8vmin;
+}
+
+.SbDKL2bctOyC5ZgA0KfW:hover {
+  cursor: pointer;
+}
+
+.mOA_Z5p05rn7VW_2oU68 {
+  color: var(--black);
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderListItem/OrderListItem.module.scss"],"names":[],"mappings":"AAAA;EACE,yBAAA;EACA,aAAA;EACA,mBAAA;EACA,8BAAA;EACA,mBAAA;EACA,sBAAA;AACF;AAAE;EACE,gBAAA;EACA,kBAAA;AAEJ;;AAEA;EACE,eAAA;AACF;;AAEA;EACE,mBAAA;AACF","sourcesContent":[".OrderListItem {\n  color: rgba(0, 0, 0, 0.4);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  padding-bottom: 1.5rem;\n  .orderId, .orderDate, .orderTotal, .orderQty {\n    font-weight: 600;\n    font-size: 1.8vmin;\n  }\n}\n\n.OrderListItem:hover {\n  cursor: pointer;\n}\n\n.selected {\n  color: var(--black)\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"OrderListItem": `SbDKL2bctOyC5ZgA0KfW`,
+	"orderId": `pkpuQdpyyjAwiixhfF0e`,
+	"orderDate": `Hw5GlM45rBbJXT4xqz_6`,
+	"orderTotal": `dPGiBijH6bkYBn2STRuN`,
+	"orderQty": `qD9JjT9X14RLezQuCscH`,
+	"selected": `mOA_Z5p05rn7VW_2oU68`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -2222,9 +2247,22 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.kQbv7tzXQj9ktAQ1R55Z {
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  padding: 0 0.5rem 1rem 0.5rem;
+}
+.kQbv7tzXQj9ktAQ1R55Z .AVVTcJXuO_ZwuavhR37o {
+  padding-right: 1rem;
+  border-right: 0.1vmin solid var(--black);
+  margin-right: 1rem;
+}`, "",{"version":3,"sources":["webpack://./src/pages/OrderHistory/OrderHistory.module.scss"],"names":[],"mappings":"AAAA;EACE,8BAAA;EACA,aAAA;EACA,oCAAA;EACA,6BAAA;AACF;AAAE;EACE,mBAAA;EACA,wCAAA;EACA,kBAAA;AAEJ","sourcesContent":[".OrderHistory{\n  background-color: var(--white);\n  display: grid;\n  grid-template-columns: 0.75fr 1.25fr;\n  padding: 0 0.5rem 1rem 0.5rem;\n  .aside {\n    padding-right: 1rem;\n    border-right: .1vmin solid var(--black);\n    margin-right: 1rem;\n  }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"OrderHistory": `kQbv7tzXQj9ktAQ1R55Z`,
+	"aside": `AVVTcJXuO_ZwuavhR37o`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 

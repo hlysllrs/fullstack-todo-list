@@ -2,7 +2,7 @@ import styles from './Cart.module.scss'
 import LineItem from '../LineItem/LineItem'
 import { useNavigate } from 'react-router-dom'
 
-export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShowCart }) {
+export default function Cart({ cart, handleChangeQty, toggleShowCart }) {
   if (!cart) return null
 
   const navigate = useNavigate()
@@ -25,10 +25,9 @@ export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShow
     <div className={styles.CartBackground}>
       <div className={styles.CartPanel}>
         <div className={styles.cartHeading}>
-          <span className={styles.itemQty}>{`${cart.totalQty} item${cart.totalQty > 1 ? 's' : ''}`}</span>
+          <span className={styles.itemQty}>{`${cart.totalQty} item${cart.totalQty !== 1 ? 's' : ''}`}</span>
           <button className={styles.closeBtn} onClick={toggleShowCart}>close</button>
         </div>
-        <span className={styles.date}>{new Date(cart.updatedAt).toLocaleDateString()}</span>
         <div className={`${styles.lineItemContainer} scroll-y`}>
           {lineItems.length ?
             <>

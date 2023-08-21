@@ -15,23 +15,8 @@ export default function OrderDetail({ order, handleChangeQty, location }) {
 
   return (
     <div className={styles.OrderDetail}>
-      <div className={styles.orderHeading}>
-        {order.isPaid ?
-          <span>order<span className="smaller">{order.orderId}</span></span>
-          :
-          <span>new order </span>
-        }
-        <span className={styles.date}>{new Date(order.updatedAt).toLocaleDateString()}</span>
-      </div>
-      <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
+      <div className='flex-ctr-ctr flex-col scroll-y'>
         {lineItems}
-        {location.pathname === '/checkout' ? <></> :
-          <section className={styles.total}>
-            <span>{order.totalQty}</span>
-            <span className={styles.right}>${order.orderTotal.toFixed(2)}</span>
-            {order.isPaid && <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>}
-          </section>
-        }
       </div>
     </div >
   )

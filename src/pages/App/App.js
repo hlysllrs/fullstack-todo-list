@@ -128,7 +128,7 @@ export default function App() {
         <Route path="/home" element={<Home className={styles.Home} />} />
         <Route path="/shop" element={<Shop cart={cart} setCart={setCart} />} />
         <Route path="/checkout" element={<Checkout user={user} setUser={setUser} handleChangeQty={handleChangeQty} order={cart} setCart={setCart} location={location} />} />
-        <Route path="/orders" element={<OrderHistory user={user} setUser={setUser} />} />
+        <Route path="/orders" element={<OrderHistory user={user} setUser={setUser} location={location} />} />
         <Route path="/wishlist" element={<Wishlist />} />
         {/* <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
         <Route path="/orders" element={<OrderHistoryPage user={user} setUser={setUser} />} /> */}
