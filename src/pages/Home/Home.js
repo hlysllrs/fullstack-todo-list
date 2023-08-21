@@ -1,5 +1,5 @@
 import styles from './Home.module.scss'
-import coverImage from '../../img/cover-image.png'
+import coverImage from '../../img/cover-image.jpg'
 
 export default function Home(props) {
 
