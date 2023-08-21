@@ -29,15 +29,6 @@ export default function App() {
     }
   }, [])
 
-  // automatically retreive cart
-  useEffect(() => {
-    async function getCartItems() {
-      const cart = await ordersAPI.getCart()
-      setCart(cart)
-    }
-    getCartItems()
-  }, [])
-
   async function createGuestUser() {
     const guestUserData = {
       // generate random email address
@@ -53,6 +44,14 @@ export default function App() {
     setUser(guestUser)
   }
 
+  // automatically retreive cart
+  useEffect(() => {
+    async function getCartItems() {
+      const cart = await ordersAPI.getCart()
+      setCart(cart)
+    }
+    getCartItems()
+  }, [])
 
   function handleLogoClick() {
     if (showCart) toggleShowCart()
