@@ -1,4 +1,4 @@
-import styles from './lineItem.module.scss'
+import styles from './LineItem.module.scss'
 
 export default function LineItem({ lineItem, isPaid, handleChangeQty }) {
   return (
