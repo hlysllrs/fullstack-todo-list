@@ -1,7 +1,7 @@
 import styles from './OrderDetail.module.scss'
 import LineItem from '../LineItem/LineItem'
 
-export default function OrderDetail({ order, handleChangeQty, handleCheckout }) {
+export default function OrderDetail({ order, handleChangeQty, location }) {
   if (!order) return null
 
   const lineItems = order.lineItems.map(item =>
@@ -14,22 +14,24 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
   )
 
   return (
-    <div className={`${styles.OrderDetail} cart`}>
-      <div className={styles.sectionHeading}>
+    <div className={styles.OrderDetail}>
+      <div className={styles.orderHeading}>
         {order.isPaid ?
-          <span>ORDER<span className="smaller">{order.orderId}</span></span>
+          <span>order<span className="smaller">{order.orderId}</span></span>
           :
-          <span>NEW ORDER </span>
+          <span>new order </span>
         }
-        <span>{new Date(order.updatedAt).toLocaleDateString()}</span>
+        <span className={styles.date}>{new Date(order.updatedAt).toLocaleDateString()}</span>
       </div>
       <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
         {lineItems}
-        <section className={styles.total}>
-          <span>{order.totalQty}</span>
-          <span className={styles.right}>${order.orderTotal.toFixed(2)}</span>
-          {order.isPaid && <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>}
-        </section>
+        {location.pathname === '/checkout' ? <></> :
+          <section className={styles.total}>
+            <span>{order.totalQty}</span>
+            <span className={styles.right}>${order.orderTotal.toFixed(2)}</span>
+            {order.isPaid && <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>}
+          </section>
+        }
       </div>
     </div >
   )

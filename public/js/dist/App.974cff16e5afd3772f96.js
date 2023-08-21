@@ -402,7 +402,7 @@ function OrderDetail(_ref) {
   let {
     order,
     handleChangeQty,
-    handleCheckout
+    location
   } = _ref;
   if (!order) return null;
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -412,14 +412,16 @@ function OrderDetail(_ref) {
     key: item._id
   }));
   return /*#__PURE__*/React.createElement("div", {
-    className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail, " cart")
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
   }, /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].sectionHeading
-  }, order.isPaid ? /*#__PURE__*/React.createElement("span", null, "ORDER", /*#__PURE__*/React.createElement("span", {
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].orderHeading
+  }, order.isPaid ? /*#__PURE__*/React.createElement("span", null, "order", /*#__PURE__*/React.createElement("span", {
     className: "smaller"
-  }, order.orderId)) : /*#__PURE__*/React.createElement("span", null, "NEW ORDER "), /*#__PURE__*/React.createElement("span", null, new Date(order.updatedAt).toLocaleDateString())), /*#__PURE__*/React.createElement("div", {
+  }, order.orderId)) : /*#__PURE__*/React.createElement("span", null, "new order "), /*#__PURE__*/React.createElement("span", {
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].date
+  }, new Date(order.updatedAt).toLocaleDateString())), /*#__PURE__*/React.createElement("div", {
     className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].lineItemContainer, " flex-ctr-ctr flex-col scroll-y")
-  }, lineItems, /*#__PURE__*/React.createElement("section", {
+  }, lineItems, location.pathname === '/checkout' ? /*#__PURE__*/React.createElement(React.Fragment, null) : /*#__PURE__*/React.createElement("section", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].total
   }, /*#__PURE__*/React.createElement("span", null, order.totalQty), /*#__PURE__*/React.createElement("span", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
@@ -896,8 +898,9 @@ function App() {
       user: user,
       setUser: setUser,
       handleChangeQty: handleChangeQty,
-      cart: cart,
-      setCart: setCart
+      order: cart,
+      setCart: setCart,
+      location: location
     })
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
     path: "/orders",
@@ -943,14 +946,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 function Checkout(_ref) {
   let {
     user,
     setUser,
-    cart,
+    order,
     setCart,
-    handleChangeQty
+    handleChangeQty,
+    location
   } = _ref;
   const [showSignUp, setShowSignUp] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
@@ -961,27 +964,38 @@ function Checkout(_ref) {
     _handleCheckout = _asyncToGenerator(function* () {
       yield _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.checkout();
       setCart(null);
-      if (user.name === 'c186ec') navigate('/orders');
+      navigate('/orders');
     });
     return _handleCheckout.apply(this, arguments);
   }
   function handleSignUpClick() {
     setShowSignUp(!showSignUp);
-    if (showLogin) setShowLogin(!showLogin);
   }
   return /*#__PURE__*/React.createElement("div", {
     className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].Checkout
-  }, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h1", null, "Checkout"), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    order: cart,
+  }, /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].orderDetail,
+    order: order,
     handleChangeQty: handleChangeQty,
-    handleCheckout: handleCheckout
-  }), user.name === 'c186ec' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    handleCheckout: handleCheckout,
+    location: location
+  }), /*#__PURE__*/React.createElement("div", {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].checkoutInfo
+  }, order && /*#__PURE__*/React.createElement("section", {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].total
+  }, /*#__PURE__*/React.createElement("span", {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].totalQty
+  }, "".concat(order.totalQty, " item").concat(order.totalQty > 1 ? 's' : '')), /*#__PURE__*/React.createElement("span", {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].totalPrice
+  }, "$", order.orderTotal.toFixed(2))), /*#__PURE__*/React.createElement("div", {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].signUp
+  }, user.name === 'c186ec' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].showSignUpBtn,
     onClick: handleSignUpClick
   }, "sign up for an account?")), showSignUp && user.name === 'c186ec' && /*#__PURE__*/React.createElement(_components_SignUpForm_SignUpForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
     setUser: setUser
-  }), /*#__PURE__*/React.createElement("button", {
-    className: "btn-sm",
+  })), /*#__PURE__*/React.createElement("button", {
+    className: _Checkout_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].checkoutBtn,
     onClick: handleCheckout
   }, "place order")));
 }
@@ -1912,9 +1926,15 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB .eKYVt3atxJxz2kRfNDKE {
+  font-size: 2.5vmin;
+  font-weight: 600;
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AACE;EACE,kBAAA;EACA,gBAAA;AAAJ","sourcesContent":[".OrderDetail {\n  .orderHeading {\n    font-size: 2.5vmin;\n    font-weight: 600;\n  }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"OrderDetail": `cPR75kdAXDGVxib0PszB`,
+	"orderHeading": `eKYVt3atxJxz2kRfNDKE`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -2082,9 +2102,62 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.bBsv5hzKOfd0l6B7Vw05 {
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  padding: 0 0.5rem 1rem 0.5rem;
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 0.75rem;
+  border-left: 0.1vmin solid var(--black);
+  padding-left: 0.75rem;
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .PLVAzgASpap71vwPlmKl {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .PLVAzgASpap71vwPlmKl .Ful0JXxRlC8dUo89JQgm {
+  font-size: 2.5vmin;
+  font-weight: 700;
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .PLVAzgASpap71vwPlmKl .frVqEvNDA4iE8WsXTF6l {
+  font-size: 2.3vmin;
+  font-weight: 500;
+  color: var(--black);
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .YQgue9Q669iGHnM08Czf {
+  padding: 1rem 0;
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .YQgue9Q669iGHnM08Czf:hover {
+  cursor: pointer;
+  color: var(--accent);
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .tkMAwnQqzBQHYVvf4thu {
+  color: var(--accent);
+  font-size: 2.6vmin;
+  padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
+}
+.bBsv5hzKOfd0l6B7Vw05 .kXAPXLcxPcC_Y0uEH8XQ .tkMAwnQqzBQHYVvf4thu:hover {
+  padding: 0.25rem 0.5rem;
+}`, "",{"version":3,"sources":["webpack://./src/pages/Checkout/Checkout.module.scss"],"names":[],"mappings":"AAAA;EACE,8BAAA;EACA,aAAA;EACA,oCAAA;EACA,6BAAA;AACF;AAAE;EACE,WAAA;EACA,aAAA;EACA,sBAAA;EACA,2BAAA;EACA,uBAAA;EACA,oBAAA;EACA,uCAAA;EACA,qBAAA;AAEJ;AADI;EACE,aAAA;EACA,sBAAA;EACA,2BAAA;AAGN;AAFM;EACE,kBAAA;EACA,gBAAA;AAIR;AAFM;EACE,kBAAA;EACA,gBAAA;EACA,mBAAA;AAIR;AADI;EACE,eAAA;AAGN;AADI;EACE,eAAA;EACA,oBAAA;AAGN;AAAI;EACE,oBAAA;EACA,kBAAA;EACA,uBAAA;EACA,oBAAA;AAEN;AAAI;EACE,uBAAA;AAEN","sourcesContent":[".Checkout{\n  background-color: var(--white);\n  display: grid;\n  grid-template-columns: 1.25fr 0.75fr;\n  padding: 0 0.5rem 1rem 0.5rem;\n  .checkoutInfo {\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: flex-start;\n    align-items: flex-start;\n    margin-left: 0.75rem;\n    border-left: .1vmin solid var(--black);\n    padding-left: 0.75rem;\n    .total {\n      display: flex;\n      flex-direction: column;\n      justify-content: flex-start;\n      .totalQty {\n        font-size: 2.5vmin;\n        font-weight: 700;\n      }\n      .totalPrice {\n        font-size: 2.3vmin;\n        font-weight: 500;\n        color: var(--black);\n      }\n    }\n    .signUp {\n      padding: 1rem 0;\n    }\n    .signUp:hover {\n      cursor: pointer;\n      color: var(--accent)\n    }\n    \n    .checkoutBtn {\n      color: var(--accent);\n      font-size: 2.6vmin;\n      padding: 0.25rem 0.5rem;\n      margin-left: -0.5rem\n    }\n    .checkoutBtn:hover {\n      padding: 0.25rem 0.5rem;\n    }\n  }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"Checkout": `bBsv5hzKOfd0l6B7Vw05`,
+	"checkoutInfo": `kXAPXLcxPcC_Y0uEH8XQ`,
+	"total": `PLVAzgASpap71vwPlmKl`,
+	"totalQty": `Ful0JXxRlC8dUo89JQgm`,
+	"totalPrice": `frVqEvNDA4iE8WsXTF6l`,
+	"signUp": `YQgue9Q669iGHnM08Czf`,
+	"checkoutBtn": `tkMAwnQqzBQHYVvf4thu`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 

@@ -1,0 +1,47 @@
+.Checkout{
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  padding: 0 0.5rem 1rem 0.5rem;
+  .checkoutInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 0.75rem;
+    border-left: .1vmin solid var(--black);
+    padding-left: 0.75rem;
+    .total {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      .totalQty {
+        font-size: 2.5vmin;
+        font-weight: 700;
+      }
+      .totalPrice {
+        font-size: 2.3vmin;
+        font-weight: 500;
+        color: var(--black);
+      }
+    }
+    .signUp {
+      padding: 1rem 0;
+    }
+    .signUp:hover {
+      cursor: pointer;
+      color: var(--accent)
+    }
+    
+    .checkoutBtn {
+      color: var(--accent);
+      font-size: 2.6vmin;
+      padding: 0.25rem 0.5rem;
+      margin-left: -0.5rem
+    }
+    .checkoutBtn:hover {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+}

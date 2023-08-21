@@ -127,7 +127,7 @@ export default function App() {
         {/* client-side route that renders the component instance if the path matches the url in the address bar */}
         <Route path="/home" element={<Home className={styles.Home} />} />
         <Route path="/shop" element={<Shop cart={cart} setCart={setCart} />} />
-        <Route path="/checkout" element={<Checkout user={user} setUser={setUser} handleChangeQty={handleChangeQty} cart={cart} setCart={setCart} />} />
+        <Route path="/checkout" element={<Checkout user={user} setUser={setUser} handleChangeQty={handleChangeQty} order={cart} setCart={setCart} location={location} />} />
         <Route path="/orders" element={<OrderHistory user={user} setUser={setUser} />} />
         <Route path="/wishlist" element={<Wishlist />} />
         {/* <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
