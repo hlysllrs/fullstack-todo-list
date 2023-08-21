@@ -22,7 +22,6 @@
   --bg: #e9e8e5;
   --accent: #ff4e00;
   --image-bg: #fafafa;
-  --sidebar-bg: 233, 232, 229;
 }
 
 *, *:before, *:after {
@@ -94,15 +93,14 @@ code {
 }
 
 .form-container {
-  padding: 3vmin;
-  background-color: var(--bg);
-  border: .1vmin solid var(--black);
-  border-radius: 1vmin;
+  padding: 0.5rem 0;
+  background-color: var(--white);
 }
 
 p.error-message {
   color: var(--accent);
   text-align: center;
+
 }
 
 form {
@@ -162,10 +160,11 @@ button.btn-xs {
 
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
-  background-color: var(--bg);
+  color: rgba(0, 0, 0, 0.5)
 } 
 
 button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
+  color: var(--accent)
 }

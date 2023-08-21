@@ -13,9 +13,11 @@ export default function UserLogOut({ user, createGuestUser, toggleShowUserPanel 
 
   return (
     <div className={styles.UserLogOut}>
-      <div>{user?.name}</div>
-      <div className={styles.email}>{user?.email}</div>
-      <button className="btn-sm" onClick={handleLogOut}>log out</button>
+      <div className={styles.userInfo}>
+        <div>{user?.name}</div>
+        <div className={styles.email}>{user?.email}</div>
+      </div>
+      <button className={styles.logOutBtn} onClick={handleLogOut}>log out</button>
     </div>
   )
 }

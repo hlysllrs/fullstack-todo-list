@@ -1,8 +1,60 @@
-.UserPanel {
+.UserPanel{
   position: absolute;
   top: 0;
   right: 0;
-  width: 20%;
+  min-width: 300px;
+  max-width: 30%;
   height: 100vh;
   background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 100vw rgba(233, 232, 229, 0.4);
+  .userPanelHeading {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    span {
+      font-size: 3.5vmin;
+      font-weight: 700;
+    }
+    .closeBtn {
+      font-size: 2.5vmin;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+  .signUpLogIn {
+    padding: 1rem 0;
+  }
+  .signUpLogIn:hover {
+    cursor: pointer;
+    color: var(--accent)
+  }
+  .userPanelOptions {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    .linkContainer {
+      display: flex;
+      flex-direction: column;
+      a {
+        text-decoration: none;
+        color: var(--black);
+        font-weight: 500;
+        font-size: 2.6vmin;
+        padding-bottom: 0.25rem;
+      };
+      a:hover {
+        color: var(--accent)
+      }
+    }
+  }
+
 }

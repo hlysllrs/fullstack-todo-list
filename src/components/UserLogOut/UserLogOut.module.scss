@@ -1,0 +1,17 @@
+.UserLogOut {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  .userInfo {
+    font-weight: 500;
+    font-size: 1.8vmin;
+    padding-bottom: 0.25rem;
+  }
+  .logOutBtn {
+    color: var(--accent);
+    font-size: 2.6vmin;
+    padding: 0.25rem 0.5rem;
+  }
+}
+

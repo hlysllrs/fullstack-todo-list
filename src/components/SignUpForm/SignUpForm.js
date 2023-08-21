@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styles from './SignUpForm.module.scss'
 import { updateUser } from '../../utilities/users-service'
 
 export default function SignUpForm({ setUser }) {
@@ -42,12 +43,12 @@ export default function SignUpForm({ setUser }) {
           <input type="text" name="email" value={signUpData.email} onChange={handleChange} required />
           <label>password</label>
           <input type="password" name="password" value={signUpData.password} onChange={handleChange} required />
-          <label>confirm password</label>
+          <label>confirm</label>
           <input type="password" name="confirm" value={signUpData.confirm} onChange={handleChange} required />
           <button type="submit" disabled={disable}>sign up</button>
         </form>
       </div>
-      <p className="error-message">&nbsp;{error}</p>
+      <p className="error-message">{error}</p>
     </div>
   )
 }

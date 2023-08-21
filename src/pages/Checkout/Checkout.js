@@ -26,7 +26,7 @@ export default function Checkout({ user, setUser, order, setCart, handleChangeQt
       <div className={styles.checkoutInfo}>
         {order &&
           <section className={styles.total}>
-            <span className={styles.totalQty}>{`${order.totalQty} item${order.totalQty > 1 ? 's' : ''}`}</span>
+            <span className={styles.totalQty}>{`${order.totalQty} item${order.totalQty !== 1 ? 's' : ''}`}</span>
             <span className={styles.totalPrice}>${order.orderTotal.toFixed(2)}</span>
           </section>}
         {/* if user is a guest, show option to sign up for an account */}
