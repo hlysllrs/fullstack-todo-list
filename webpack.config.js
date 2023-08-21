@@ -14,7 +14,7 @@ module.exports = env => {
 			path: path.resolve(__dirname, 'public/js/dist'),
 			filename: '[name].[contenthash].js', // '[name].[contenthash].js' put this if you want to get hashed files to cache bust
 			sourceMapFilename: process.env.NODE_ENV === 'dev' ? '[name].js.map' : "[name].[contenthash].js.map",
-			publicPath: '/js/dist'
+			publicPath: '/js/dist/'
 		},
 		devtool: "source-map",
 		module: {
@@ -44,17 +44,13 @@ module.exports = env => {
 					]
 				},
 				{
-					test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-					use: [
-						{
-							loader: 'file-loader',
-							options: {
-								name: '[name].[ext]',
-								outputPath: 'fonts/'
-							}
-						}
-					]
-				}
+					test: /\.(png|svg|jpg|jpeg|gif)$/i,
+					type: 'asset/resource',
+				},
+				{
+					test: /\.(woff|woff2|eot|ttf|otf)$/i,
+					type: 'asset/resource',
+				},
 			]
 		},
 		resolve: {

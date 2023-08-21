@@ -1,4 +1,5 @@
 import styles from './Logo.module.scss'
+import logoImage from '../../img/lounger-logo.svg'
 
 export default function Logo({ handleLogoClick, location }) {
 
@@ -6,7 +7,7 @@ export default function Logo({ handleLogoClick, location }) {
     <div className={styles.Logo}>
       <img
         className={location.pathname === '/home' ? styles.whiteLogo : ''}
-        src='../../img/lounger-logo.svg'
+        src={logoImage}
         alt='Lounger Logo'
         onClick={handleLogoClick} />
     </div>

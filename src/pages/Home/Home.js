@@ -1,11 +1,12 @@
 import styles from './Home.module.scss'
+import coverImage from '../../img/cover-image.jpeg'
 
 export default function Home(props) {
+
   return (
     <div className={styles.Home}>
       <center>
-        <img src="/img/cover-image.jpeg" alt="Cover Image" className={styles.cover} />
-
+        <img src={coverImage} alt="Cover Image" className={styles.cover} />
       </center>
     </div>
   )
