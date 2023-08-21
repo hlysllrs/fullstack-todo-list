@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-// const favicon = require('serve-favicon')
+const favicon = require('serve-favicon')
 const logger = require('morgan')
 
 /* ---------- Middleware ---------- */
@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next()
 })
 app.use(logger('dev'))
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 // check if token and create req.user
 app.use(require('./config/checkToken'))
 app.use('/api/users', require('./routes/api/users'))
