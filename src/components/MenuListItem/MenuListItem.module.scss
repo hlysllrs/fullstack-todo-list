@@ -26,8 +26,8 @@
     justify-content: space-between;
     align-items: flex-start;
     .name {
-      font-weight: 500;
-      font-size: minmax(2vmin, 2.2rem) ;
+      font-weight: 600;
+      font-size: 1.8vmin;
       padding-top: 0.3rem;
     }
     .buy {
@@ -37,11 +37,8 @@
       justify-content: space-between;
       align-items: center;
       span {
-        font-size: minmax(1.5vmin, 1.8rem);
+        font-size: 1.7vmin;
         font-weight: 400;
-      }
-      button {
-        font-size: minmax(1vmin, 1.6rem);
       }
     }
   }

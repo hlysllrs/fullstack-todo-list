@@ -1,67 +1,68 @@
 .CartBackground  {
-  width: 100vw;
-  background-color: rgba(233,232,229,0.85);
+  height: 100%;
+  width: 100%;
+  background-color: rgb(233,232,229);
 }
-
 
 .CartPanel{
   position: absolute;
   top: 0;
   right: 0;
-  width: 20%;
+  min-width: 200px;
+  max-width: 30%;
   height: 100vh;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: flex-start;
-  padding: 1rem;
-}
-
-.OrderDetail {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 3vmin;
-  font-size: 2vmin;
-  color: var(--black);
-}
-
-.Cart .sectionHeading {
-  width: 100%
-}
-
-.Cart .lineItemContainer {
-  margin-top: 3vmin;
-  justify-content: center;
-  height: calc(100vh - 18vmin);
-  width: 100%;
-}
-
-.Cart .total {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 18.35vw 5.75vw 5.25vw;
-  padding: 1vmin 0;
-  color: var(--black);
-  border-top: .1vmin solid var(--black);
-}
-
-.OrderDetail .total span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5vw;
-  color: var(--black);
-}
-
-.OrderDetail .total span.right {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.OrderDetail .hungry {
-  position: absolute;
-  top: 50vh;
-  font-size: 2vmin;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 100vw rgba(233, 232, 229, 0.4);
+  .cartHeading {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .itemQty {
+      font-size: 3.5vmin;
+      font-weight: 700;
+    }
+    .closeBtn {
+      font-size: 2.5vmin;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+  .date {
+    padding-bottom: 0.5rem;
+    font-weight: 400;
+  }
+  .lineItemContainer {
+    align-self: flex-start;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    justify-items: start;
+    width: 100%;
+    flex-grow: 1;
+  }
+  .total {
+    align-self: flex-end;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: var(--black);
+    padding-top: 0.25rem;
+    margin-top: 0.5rem;
+    border-top: .1vmin solid var(--black);
+    span {
+      font-size: 2.8vmin;
+      color: var(--black);
+    }
+    .checkoutBtn {
+      color: var(--accent);
+      font-size: 2.6vmin;
+      padding: 0.25rem 0.5rem;
+    }
+  }
 }

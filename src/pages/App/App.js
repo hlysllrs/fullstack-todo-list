@@ -86,6 +86,7 @@ export default function App() {
 
   function toggleShowCart() {
     setShowCart(!showCart)
+    document.body.style.overflow = showCart ? 'unset' : 'hidden'
   }
   function toggleShowUserPanel() {
     setShowUserPanel(!showUserPanel)

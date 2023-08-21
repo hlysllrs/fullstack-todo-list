@@ -24,63 +24,34 @@ export default function Cart({ cart, handleChangeQty, handleCheckout, toggleShow
   return (
     <div className={styles.CartBackground}>
       <div className={styles.CartPanel}>
-        <div className={styles.sectionHeading}>
-          {cart.isPaid ?
-            <span>ORDER<span className="smaller">{cart.orderId}</span></span>
-            :
-            <span>NEW ORDER </span>
-          }
-          <span>{new Date(cart.updatedAt).toLocaleDateString()}</span>
+        <div className={styles.cartHeading}>
+          <span className={styles.itemQty}>{`${cart.totalQty} item${cart.totalQty > 1 ? 's' : ''}`}</span>
+          <button className={styles.closeBtn} onClick={toggleShowCart}>close</button>
         </div>
-        <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
+        <span className={styles.date}>{new Date(cart.updatedAt).toLocaleDateString()}</span>
+        <div className={`${styles.lineItemContainer} scroll-y`}>
           {lineItems.length ?
             <>
               {lineItems}
               <section className={styles.total}>
-                {cart.isPaid ?
-                  <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>
-                  :
+
+                <span>${cart.orderTotal.toFixed(2)}</span>
+                {!cart.isPaid &&
                   <button
-                    className="btn-sm"
+                    className={styles.checkoutBtn}
                     onClick={handleCheckoutClick}
                     disabled={!lineItems.length}
                   >checkout
                   </button>
                 }
-                <span>{cart.totalQty}</span>
-                <span className={styles.right}>${cart.orderTotal.toFixed(2)}</span>
+
               </section>
             </>
             :
             <div className={styles.empty}>your cart is empty.</div>
           }
         </div>
-        <button className="btn-sm" onClick={toggleShowCart}>close</button>
       </div>
     </div >
   )
 }
-
-
-
-// import { useState } from 'react'
-// import styles from './Cart.module.scss'
-// import OrderDetail from '../OrderDetail/OrderDetail'
-
-// export default function Cart({ order, handleChangeQty, handleCheckout }) {
-//   return (
-//     <div className={styles.cartBackground}>
-//       <div className={styles.cartContainer}>
-//         <button>x</button>
-//         <h1>This is the Cart</h1>
-
-//         <OrderDetail className={styles.cart}
-//           order={order}
-//           handleChangeQty={handleChangeQty}
-//           handleCheckout={handleCheckout}
-//         />
-//         <button>checkout</button>
-//       </div>
-//     </div>
-//   )
-// }
