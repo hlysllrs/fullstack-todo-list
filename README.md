@@ -20,7 +20,8 @@ user, or they can choose to create an account to access features such as viewing
 - [Serve Favicon](https://www.npmjs.com/package/serve-favicon)
 
 ## Next Steps
-- Refactor state with useReducer and useContext hooks
+- Refactor state with useReducer and useContext React hooks
+- Improve responsive layout for smaller screens
+- Implement product detail pages
 - Restrict guest user access to order history page
 - Implement wishlist functionality
-- Improve responsive layout for smaller screens
